@@ -11,20 +11,22 @@
             background-color: #f4f4f9;
             color: #333;
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            counter-reset: group-counter; /* Global counter for groups */
+            counter-reset: group-counter;
         }
+
         .header-banner {
+            position: fixed; /* Pin to the screen */
+            top: 0;          /* Pin to the top */
+            width: 100%;     /* Make it full width */
             background-color: #007BFF;
             color: white;
             padding: 15px 20px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 1000;
-            flex-shrink: 0;
+            box-sizing: border-box; /* Ensures padding is included in width */
         }
+        
         .header-banner h1 {
             margin: 0;
             font-size: 1.5em;
@@ -32,27 +34,33 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        
         .main-content {
-            overflow-y: auto;
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            /* Add padding to offset the fixed header and footer */
+            padding: 84px 20px 70px 20px; 
             box-sizing: border-box;
-            flex-grow: 1;
         }
+        
         .footer-band {
+            position: fixed;   /* Pin to the screen */
+            bottom: 0;         /* Pin to the bottom */
+            width: 100%;       /* Make it full width */
             background-color: #333;
             color: white;
             padding: 10px 20px;
             text-align: center;
             box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
             z-index: 1000;
-            flex-shrink: 0;
+            box-sizing: border-box; /* Ensures padding is included in width */
         }
+
         .job-category {
             margin-bottom: 20px;
-            counter-increment: group-counter; /* Increment for each category */
+            counter-increment: group-counter;
         }
+        
         .job-category h2 {
             margin-top: 0;
             border-bottom: 2px solid #e0e0e0;
@@ -61,18 +69,21 @@
             display: flex;
             align-items: center;
         }
+        
         .job-category h2::before {
-            content: counter(group-counter) ". "; /* Display the group number */
+            content: counter(group-counter) ". ";
             font-weight: bold;
             color: #007bff;
             margin-right: 5px;
         }
+        
         .job-category > ol {
             padding: 0;
             margin: 0;
             list-style-type: none;
-            counter-reset: job-counter; /* Reset job counter for each group */
+            counter-reset: job-counter;
         }
+        
         .job-category > ol > li {
             background-color: white;
             padding: 20px;
@@ -81,10 +92,11 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: relative;
         }
+        
         .job-category > ol > li:last-child {
             margin-bottom: 0;
         }
-        /* THIS IS THE CORRECTED SELECTOR FOR JOB NUMBERING */
+        
         .job-category > ol > li::before {
             counter-increment: job-counter;
             content: counter(group-counter) "." counter(job-counter) ". "; 
@@ -93,6 +105,7 @@
             position: absolute;
             left: 20px;
         }
+        
         .job-title {
             font-weight: bold;
             color: #0056b3;
@@ -111,12 +124,14 @@
             color: #0056b3;
             margin: 0 0 5px 0;
         }
+
         .roadmap {
             border-top: 1px solid #e0e0e0;
             margin-top: 15px;
             padding-top: 15px;
             margin-left: 35px;
         }
+
         .roadmap h3 {
             margin: 0 0 5px 0;
             color: #0056b3;
@@ -127,6 +142,7 @@
             font-size: 0.85em;
             color: #444;
         }
+        
         .skills-list {
             margin-top: 15px;
             padding-top: 15px;
@@ -151,12 +167,14 @@
             padding-left: 0;
             margin-bottom: 5px;
         }
+        
         .resource-list {
             list-style-type: disc;
             padding-left: 20px;
             margin-top: 5px;
             font-size: 0.9em;
         }
+        
         .color-dot {
             height: 14px;
             width: 14px;
@@ -165,6 +183,7 @@
             margin-right: 12px;
             flex-shrink: 0;
         }
+        
         .color-dot.green { background-color: #28a745; }
         .color-dot.blue { background-color: #007bff; }
         .color-dot.orange { background-color: #fd7e14; }
