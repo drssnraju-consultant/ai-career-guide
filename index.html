@@ -11,13 +11,14 @@
             background-color: #f4f4f9;
             color: #333;
             line-height: 1.6;
-            
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-            min-height: 100vh;
+            min-height: 100vh; /* Ensures content fills at least the viewport height */
         }
 
         .header-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             background-color: #007BFF;
             color: white;
             padding: 15px 20px;
@@ -35,14 +36,20 @@
         }
         
         .main-content {
-            overflow-y: auto;
+            padding-top: 80px; /* Space for fixed header */
+            padding-bottom: 60px; /* Space for fixed footer */
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
             box-sizing: border-box;
         }
         
         .footer-band {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: #333;
             color: white;
             padding: 10px 20px;
@@ -112,7 +119,6 @@
         .color-dot.dark-green { background-color: #044b1c; }
         .color-dot.gear { background-color: #6c757d; }
 
-        /* New styles for content within the cards */
         .job-title {
             font-weight: bold;
             color: #0056b3;
@@ -1155,161 +1161,4 @@
                     <div class="roadmap">
                         <h3>Entry-Level</h3>
                         <p>Begin as a Research Assistant. Your focus is on studying the societal impact of AI and assisting in the development of ethical frameworks.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become an AI Ethics Researcher. You'll be responsible for your own research projects, publishing papers, and influencing the development of AI products with an ethical lens.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a Senior AI Ethicist. You'll be a recognized expert, responsible for guiding a company's ethical principles and leading discussions on the future of AI ethics.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">AI Fairness – Bias Auditor</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹10-22 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Bias detection, fairness metrics, data analysis, Python, statistical methods, explainable AI (XAI).</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Start as a Data Analyst with a focus on data quality. Focus on understanding data distributions and identifying potential sources of bias in datasets.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become a Bias Auditor. You'll use specialized tools and statistical methods to audit AI models for fairness, working to mitigate bias and ensure equitable outcomes.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a Director of Fairness & Transparency. You'll lead the company's entire bias auditing program, set standards for fairness, and report directly to leadership on the ethical performance of AI systems.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">AI Policy & Governance Analyst</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹8-18 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Public policy, legal knowledge, AI regulation, government relations, policy writing.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Start as a Policy Analyst. Your focus is on researching and analyzing new regulations and their potential impact on AI development.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become a Governance Analyst. You'll be responsible for drafting internal policies and ensuring that AI projects are aligned with both internal and external governance frameworks.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a Director of Public Policy. You'll be responsible for the company's government relations and public policy strategy, representing the company in discussions with lawmakers.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">Responsible AI Specialist</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹12-25 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Interdisciplinary knowledge (tech, ethics, law), risk management, technical background, stakeholder management.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Start as a Junior Responsible AI Analyst. Your focus is on assisting senior specialists in risk assessments and ethical reviews of AI projects.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become a Responsible AI Specialist. You'll be responsible for conducting independent ethical reviews, providing guidance to product teams, and leading discussions on responsible AI development.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a Lead Ethicist or Director of Responsible AI. You'll define the company's ethical principles and build the team responsible for ensuring all AI projects are developed with accountability and fairness in mind.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="job-category">
-            <h2>10. <span class="color-dot gear"></span>Supporting & Cross-Functional Roles</h2>
-            <ul style="counter-reset: item;">
-                <li>
-                    <h3 class="job-title">AI Customer Success – Implementation Specialist</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹6-15 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Client communication, product knowledge, project management, technical troubleshooting, training.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Start as an Implementation Specialist. You'll work with new clients to help them set up and use AI products, troubleshooting initial issues.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become a Customer Success Manager. You'll be responsible for managing a portfolio of key client accounts, ensuring they are getting value from the product and identifying new opportunities.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a Director of Customer Success. You'll manage the entire customer success organization and set the strategy for client retention and growth.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">AI Quality Assurance Engineer (testing ML models)</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹5-12 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>QA methodologies, Python, test automation, data validation, model performance metrics.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Start as a Junior QA Engineer. Focus on manual testing and basic data validation of AI systems.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become a Senior QA Engineer. You'll develop and implement automated testing frameworks for AI models and data pipelines, ensuring model reliability.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a QA Lead. You'll lead the QA team, define the testing strategy for AI products, and ensure all systems meet high standards of quality.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">AI Training Data Curator – Annotator</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹4-8 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Attention to detail, domain-specific knowledge, data labeling tools, data quality control.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>This is a foundational role. Your primary goal is to curate and annotate high-quality datasets that will be used to train AI models.</p>
-                        <h3>Mid-Career</h3>
-                        <p>You can transition into a Data Curator or a Data Analyst role. You'll focus on ensuring data quality, creating data pipelines, and analyzing data to support model training.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>You can advance to a Manager of Data Operations. You'll manage a team of data annotators and curators and be responsible for the company’s entire data labeling pipeline.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">AI Trainer (models and human teams)</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹7-18 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Strong communication, teaching ability, knowledge of ML models, curriculum design.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Start by providing training and support to small teams, helping them understand and use AI models effectively.</p>
-                        <h3>Mid-Career</h3>
-                        <p>You'll become a Senior AI Trainer. You'll develop and deliver comprehensive training programs for large organizations, ensuring their teams are skilled in AI.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>You'll advance to a Director of AI Learning. You'll oversee all AI training and education initiatives, both for employees and external partners.</p>
-                    </div>
-                </li>
-                <li>
-                    <h3 class="job-title">Technical Recruiter – AI & ML talent</h3>
-                    <div class="job-info">
-                        <h4>Remuneration (India)</h4>
-                        <p>₹6-15 Lakhs per annum</p>
-                        <h4>Skills</h4>
-                        <p>Recruiting lifecycle, technical knowledge of AI roles, sourcing strategies, negotiation.</p>
-                    </div>
-                    <div class="roadmap">
-                        <h3>Entry-Level</h3>
-                        <p>Begin as a Recruiter. Focus on sourcing and screening candidates for entry-level tech roles. You'll learn to understand job descriptions and candidate skills.</p>
-                        <h3>Mid-Career</h3>
-                        <p>Become a Technical Recruiter specializing in AI. You'll develop expertise in the AI talent market, building a network of candidates and working with hiring managers to fill key roles.</p>
-                        <h3>Senior/Leadership</h3>
-                        <p>Advance to a Director of Talent Acquisition. You'll manage the entire recruiting function and develop the strategy for hiring the best AI talent for the company.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </main>
-
-    <footer class="footer-band">
-        <p>Your Guide to the Future of Work</p>
-    </footer>
-
-</body>
-</html>
+                        <h3>Mid-Career
