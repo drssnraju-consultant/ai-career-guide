@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Explorer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+
+        .header-banner {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .header-banner h1 {
+            margin: 0;
+            font-size: 1.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .main-content {
+            overflow-y: auto;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .footer-band {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .job-category {
+            margin-bottom: 20px;
+        }
+        
+        .job-category h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            color: #0056b3;
+            display: flex;
+            align-items: center;
+        }
+        
+        .job-category ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .job-category li {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .job-category li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .job-category li::before {
+            content: counter(item) ".";
+            counter-increment: item;
+            font-weight: bold;
+            color: #007bff;
+            position: absolute;
+            left: 20px;
+        }
+        
+        .color-dot {
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+        }
+        
+        .color-dot.green { background-color: #28a745; }
+        .color-dot.blue { background-color: #007bff; }
+        .color-dot.orange { background-color: #fd7e14; }
+        .color-dot.yellow { background-color: #ffc107; }
+        .color-dot.purple { background-color: #6f42c1; }
+        .color-dot.red { background-color: #dc3545; }
+        .color-dot.brown { background-color: #6610f2; }
+        .color-dot.light-gray { background-color: #adb5bd; border: 1px solid #ccc; }
+        .color-dot.dark-green { background-color: #044b1c; }
+        .color-dot.gear { background-color: #6c757d; }
+
+        /* New styles for content within the cards */
+        .job-title {
+            font-weight: bold;
+            color: #0056b3;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .job-info {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 10px;
+        }
+        .job-info h4 {
+            font-size: 1em;
+            color: #0056b3;
+            margin: 0 0 5px 0;
+        }
+
+        .roadmap {
+            border-top: 1px solid #e0e0e0;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .roadmap h3 {
+            margin: 0 0 5px 0;
+            color: #0056b3;
+            font-size: 1em;
+        }
+        .roadmap p {
+            margin: 0;
+            font-size: 0.85em;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-banner">
+        <h1>AI Career Explorer</h1>
+    </header>
+
+    <main class="main-content">
+        <div class="job-category">
+            <h2>1. <span class="color-dot light-gray"></span>AI for Domain Applications</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Engineer – Healthcare, Finance, Retail, Agriculture, Education, Manufacturing</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-30+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, ML/DL frameworks, domain-specific knowledge (e.g., finance, healthcare), data visualization, API integration.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior AI Engineer or Data Analyst within a specific sector. Focus on learning the industry's data types, regulations, and core problems. Key skills include Python, foundational ML, and domain-specific tools.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to an AI Specialist or Lead Engineer. You'll design and implement solutions for more complex, domain-specific challenges, such as fraud detection or patient outcome prediction. This stage requires deep industry knowledge and the ability to lead small projects.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Principal AI Engineer or Head of AI for a Business Unit. You'll set the technical strategy for an entire department, mentor teams, and become a subject matter expert, identifying high-impact AI opportunities within the domain.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI in Cybersecurity Specialist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, network security, threat analysis, ML for anomaly detection, data forensics.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior Cybersecurity Analyst. Focus on understanding threat landscapes and basic data analysis for security logs.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an AI Cybersecurity Specialist. You'll develop and deploy AI models to detect sophisticated threats and automate responses.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Principal Threat Intelligence Architect. You'll lead a team to design and implement a company's end-to-end AI-driven security strategy.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI in Gaming / AR / VR Developer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>C++/C#, Python, ML algorithms, game engines (Unity/Unreal), behavioral AI, computer vision.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Game Developer with an interest in AI. Focus on scripting AI for simple behaviors and physics interactions.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a specialized AI in Gaming Developer. You'll design and implement complex AI for characters, level generation, or dynamic storytelling.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Lead AI Engineer for a gaming studio. You'll oversee the entire AI development pipeline for major titles and set the creative and technical direction.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Autonomous Vehicle Engineer / Perception Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-40+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>C++, Python, Computer Vision, sensor fusion, robotics, deep learning for perception.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as an Intern or Junior Engineer. Focus on a single aspect like sensor data processing or object detection.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to a specialized Perception Engineer. You'll integrate data from multiple sensors (LiDAR, cameras) to build a complete picture of the environment.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Move to Principal or Lead AV Engineer. You'll be responsible for the entire perception system, ensuring safety and reliability, and mentoring junior engineers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Robotics Engineer (with AI modules)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, C++, ROS (Robot Operating System), kinematics, reinforcement learning, control systems.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Robotics Engineer. Focus on programming robot kinematics and basic task automation.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an AI Robotics Engineer. You'll use AI to enable robots to learn from their environment and perform more complex tasks like object manipulation.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Robotics Program Lead. You'll oversee the development of a full line of robotic products and manage a team of engineers and scientists.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Smart IoT / Edge AI Developer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Embedded systems, C/C++, Python, TensorFlow Lite, communication protocols (MQTT, LoRaWAN), hardware knowledge.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior Embedded Systems Developer. Focus on writing low-level code for microcontrollers and sensors.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an Edge AI Developer. You'll optimize and deploy ML models directly onto resource-constrained devices to enable real-time, on-device AI.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to IoT Solutions Architect. You'll design and oversee the entire ecosystem of smart devices and their AI capabilities for large-scale projects.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>2. <span class="color-dot red"></span>AI Product, Strategy & Business</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Business Analyst</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Business process analysis, SQL, data storytelling, AI/ML concepts, communication, stakeholder management.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin by collecting and analyzing business requirements for AI projects. Your goal is to understand the problem and translate it into actionable technical tasks.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to a Senior Business Analyst or a Product Manager. You'll lead the discovery phase for new AI products and own the business case and feature prioritization.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Business Strategy. You'll identify new market opportunities for AI and manage a portfolio of AI-driven initiatives.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Consultant / Strategist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-35 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Business acumen, market analysis, AI strategy, project management, client relations, domain expertise.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Consultant. You'll assist senior team members in advising clients on AI adoption and implementation strategies.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Consultant or Manager. You'll lead client engagements, develop complex AI strategies, and act as a key advisor.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Partner or Practice Head. You'll oversee the entire AI consulting business unit, drive sales, and shape the firm's strategic direction.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Evangelist / Developer Advocate</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Public speaking, technical writing, community building, deep understanding of AI tools/platforms, social media presence.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Developer Advocate. Your focus is on creating tutorials and speaking at events to build a user base for a company's AI tools.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Evangelist. You'll be a recognized voice in the AI community, influencing the product roadmap based on community feedback and leading the developer relations team.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Developer Relations. You'll manage a global team of advocates and set the strategy for engaging the AI developer community.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Program Manager / Delivery Manager</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹15-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Project management methodologies (Agile/Scrum), resource planning, cross-functional team leadership, risk management.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Project Manager. You'll manage project timelines and resources for a single AI initiative.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to an AI Program Manager. You'll oversee a portfolio of interconnected AI projects, ensuring they are delivered on time and within budget.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of AI Programs. You'll be responsible for the delivery of the company’s entire AI portfolio and manage a team of program managers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Product Manager</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹15-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Product roadmap, user research, business case development, AI technology trends, data-driven decision-making.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as an Associate Product Manager. You'll assist a senior PM with user research and feature documentation for an AI product.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Product Manager. You'll own a specific AI product, defining its vision, managing the backlog, and leading the cross-functional team.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Group Product Manager or Director of Product. You'll manage a portfolio of AI products and mentor a team of product managers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Solutions Architect</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹18-40+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Cloud architecture (AWS/Azure/GCP), system design, AI/ML model deployment, security, scalability.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior Cloud Engineer. Focus on building and managing cloud infrastructure and basic data pipelines.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an AI Solutions Architect. You'll design scalable and secure AI systems, choosing the right technologies to solve client problems and leading the technical design.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal Architect. You'll lead the architectural vision for an entire organization's AI initiatives, influencing company-wide technical strategy.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Technical Writer / Documentation Specialist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹5-12 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Excellent writing skills, ability to translate complex topics, AI/ML concepts, API documentation.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Technical Writer. Your focus is on writing clear documentation for AI products and tools under supervision.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Technical Writer. You'll take ownership of an entire product's documentation, working closely with engineers to ensure accuracy and clarity for developers.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Documentation Lead. You'll manage a team of writers and define the documentation standards and strategy for the company's AI portfolio.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="job-category">
+            <h2>3. <span class="color-dot blue"></span>Core AI & Machine Learning Engineering</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Algorithm Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Advanced mathematics, C++, Python, algorithm optimization, deep understanding of data structures.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Researcher or Engineer. Focus on implementing and optimizing existing algorithms, often in an R&D setting.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to a Senior Algorithm Engineer. You'll design novel algorithms and lead their implementation, solving complex computational problems for production systems.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal Algorithm Scientist. You'll be a company-wide expert, responsible for designing and patenting new algorithms that give the company a competitive advantage.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Computer Vision Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, OpenCV, TensorFlow/PyTorch, image processing, object detection, deep learning for vision tasks.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Computer Vision Engineer. Focus on data annotation, model training, and implementing basic vision algorithms.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Computer Vision Engineer. You'll design and build end-to-end computer vision systems for products, from data collection to model deployment.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal Vision Scientist. You'll lead research and development for new vision capabilities, mentor a team, and set the technical direction for all vision-related projects.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Data Scientist – Machine Learning</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹9-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python/R, data analysis, statistical modeling, Scikit-learn, problem-solving, storytelling with data.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Data Analyst. Focus on data cleaning and exploratory data analysis to uncover business insights.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to a Data Scientist. You'll build, train, and validate machine learning models to solve complex business problems, communicating your findings to stakeholders.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Data Scientist or Director of Data Science. You'll manage a team of data scientists, define the data strategy, and ensure projects drive significant business value.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Deep Learning Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, TensorFlow/PyTorch, neural networks, computer vision, NLP, large-scale model training.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior Deep Learning Engineer. Focus on training models using existing architectures and datasets, learning foundational concepts.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Deep Learning Engineer. You'll design and implement custom deep learning models for specific problems and optimize them for production.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Deep Learning Scientist. You'll be responsible for guiding research, mentoring junior engineers, and setting the technical direction for the deep learning team.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Machine Learning Engineer (general)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-22 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, ML frameworks, data engineering, model deployment, software development.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior ML Engineer. Your focus is on building and maintaining ML pipelines and assisting with model deployment.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to a Senior ML Engineer. You'll take ownership of the end-to-end ML lifecycle for production systems, from data ingestion to model serving and monitoring.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead ML Engineer. You'll lead a team of engineers, design system architecture, and serve as a technical expert for the entire ML function.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">NLP Engineer (Natural Language Processing)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, NLTK/SpaCy, transformer models, text preprocessing, LLMs, information retrieval.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior NLP Engineer. Focus on text data preprocessing and building basic models for tasks like sentiment analysis.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior NLP Engineer. You'll work on complex NLP problems, such as custom text generation or large-scale document summarization, and optimize models for production.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal NLP Scientist. You'll lead research and development for the company’s NLP capabilities and guide a team of engineers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Predictive Analytics Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-18 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python/R, statistical analysis, time-series forecasting, SQL, regression modeling.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Data Analyst. Focus on building simple predictive models and providing insights from historical data.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Predictive Analytics Engineer. You'll design and implement advanced predictive models to forecast business metrics and drive strategic decisions.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Analyst. You'll oversee all predictive modeling efforts for a business unit and mentor junior analysts.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Reinforcement Learning Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, strong math background, deep learning, simulation environments, algorithm development.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Research Intern. Focus on implementing and testing fundamental RL algorithms in a research environment.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior RL Engineer. You'll design and build RL systems for real-world applications like robotics control or resource management.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Principal RL Scientist. You'll lead the research and development of new RL algorithms and applications for the company.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Speech Recognition Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹9-22 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, deep learning, signal processing, phonetics, audio data analysis.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Engineer. Focus on audio data collection and processing and using existing models for transcription.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Speech Recognition Engineer. You'll build and optimize custom speech-to-text models for specific languages and use cases.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Speech Scientist. You'll be responsible for the entire speech recognition pipeline and lead research into new acoustic modeling techniques.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Time-Series Modelling Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-18 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python/R, time-series libraries (Prophet, Statsmodels), feature engineering, forecasting models.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Analyst. Focus on data cleaning and using basic models to forecast simple trends.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Time-Series Modelling Engineer. You'll develop complex models to predict sales, market demand, or resource utilization, and work on optimizing model performance.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Time-Series Analyst. You'll be a company-wide expert, responsible for the forecasting strategy and mentoring a team of analysts.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>4. <span class="color-dot yellow"></span>Data, Infrastructure & Ops for AI</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Platform Engineer / Systems Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-28 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Kubernetes, Docker, cloud services, system architecture, Linux, automation scripting.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Systems Administrator. Focus on managing basic server infrastructure and automation scripts.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an AI Platform Engineer. You'll design and build the internal platforms that enable data scientists to train and deploy models efficiently.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to Director of AI Infrastructure. You'll be responsible for the company's entire AI platform, leading a team and setting the long-term technology strategy.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Big Data Engineer (for AI workloads)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹9-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Apache Spark, Hadoop, distributed systems, SQL, data warehousing, ETL.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Data Engineer. Focus on building and maintaining ETL pipelines and managing data storage.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Big Data Engineer. You'll design and build scalable data architectures and processing frameworks to handle massive datasets for AI training.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal Data Engineer. You'll be a top-level expert, responsible for the company's entire data architecture and mentoring other data engineers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Cloud AI Engineer (AWS, Azure, GCP)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Cloud provider certification, Python, API integration, cloud-native services (Sagemaker, Azure ML), security.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior Cloud Engineer. Focus on learning a specific cloud platform and managing core services.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Cloud AI Engineer. You'll specialize in deploying and managing AI workloads on the cloud, leveraging platform-specific services to build scalable solutions.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Cloud AI Architect. You'll design cloud-based AI solutions for large-scale enterprise clients, ensuring performance, security, and cost-effectiveness.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Data Engineer (AI pipelines)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>SQL, Python, ETL/ELT, data modeling, cloud platforms, data governance.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Data Analyst. Focus on data cleaning and transformation to prepare data for models.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Data Engineer. You'll build and maintain robust data pipelines that automatically collect, process, and store data for AI models to consume.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Data Engineer. You'll oversee the data engineering team and be responsible for the company's entire data infrastructure and quality.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">DataOps Engineer for ML</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-22 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>DevOps tools, CI/CD, data validation, pipeline automation, data observability.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a DevOps Engineer. Focus on implementing CI/CD pipelines and automating software builds.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a DataOps Engineer. You'll apply DevOps principles to the data lifecycle, automating data delivery and quality checks to streamline ML development.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal DataOps Engineer. You'll lead the DataOps strategy for the organization and ensure data pipelines are reliable and scalable at an enterprise level.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">MLOps Engineer / ML Infrastructure Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>DevOps, Docker, Kubernetes, CI/CD, model monitoring, cloud infrastructure, Python.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior MLOps Engineer. Focus on containerizing models and assisting with model deployment.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior MLOps Engineer. You'll own the end-to-end MLOps pipeline, from continuous training to monitoring models in production, ensuring performance and reliability.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to an MLOps Architect. You'll design and build the company's MLOps platform, choosing the right tools and technologies to support a large number of ML models.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Model Deployment / Serving Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹9-22 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>REST APIs, containerization, cloud deployment, scaling strategies, performance optimization.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Software Engineer. Focus on building and deploying backend services and APIs.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Model Deployment Engineer. You'll specialize in taking trained ML models and deploying them as scalable, low-latency services, ensuring they are reliable and performant in production.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Model Serving Engineer. You'll lead the team responsible for deploying and managing all production models and optimizing their performance at scale.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>5. <span class="color-dot green"></span>Entry / Early-Career Roles</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Intern – Research Intern</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹20,000-50,000 per month (Stipend)</p>
+                        <h4>Skills</h4>
+                        <p>Python, basic ML concepts, data handling, academic research skills.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is the starting point. Focus on learning fundamental concepts, contributing to small projects, and building your professional network.</p>
+                        <h3>Mid-Career</h3>
+                        <p>An intern's career path is a direct transition into a full-time role, such as a Junior Data Scientist or AI Engineer, by demonstrating strong project work and a willingness to learn.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Success at the intern level is measured by securing a full-time offer, not by moving into a senior role directly. Seniority is achieved after years of experience as a full-time employee.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Support Engineer – Technical Support (AI products)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹3-8 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Problem-solving, communication, basic AI knowledge, technical troubleshooting.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin by providing support to customers using AI products. Your focus is on troubleshooting issues and understanding common user problems.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Progress to a Senior Support Engineer. You'll handle more complex technical issues and provide feedback to the engineering team to improve the product.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Manager of Technical Support. You'll lead a team of support engineers and set the strategy for providing excellent customer support for AI products.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Teaching Assistant – Lab Assistant</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹20,000-40,000 per month (Stipend)</p>
+                        <h4>Skills</h4>
+                        <p>Strong foundational knowledge of AI/ML, communication, mentorship.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is an academic role, serving as a stepping stone. Your goal is to deepen your own knowledge, gain experience in communication, and potentially transition into a research or engineering role.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You can transition into an applied research role or a junior position in a specialized AI field after demonstrating expertise and project work.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Seniority is not typical for this role. It is a transitional role that prepares you for more senior positions in either academia (e.g., as a researcher) or industry.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Junior Computer Vision – NLP Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹5-10 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, basic CV/NLP libraries, data preprocessing, academic project experience.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is the start of your journey as a specialized engineer. Focus on contributing to small-scale projects and learning from senior engineers.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Transition into a full-fledged Computer Vision or NLP Engineer. You'll take ownership of complex projects and become an expert in a specific subfield.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Engineer. You'll lead a team of junior engineers and design the technical architecture for major projects.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Junior Data Scientist (AI focus)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹4-9 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python/R, SQL, data cleaning, basic statistical analysis, model training.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a foundational role. Focus on mastering data analysis techniques, data cleaning, and building your first end-to-end projects.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Data Scientist. You'll take on more complex modeling challenges, from model building to deployment, and will be expected to present your findings to business stakeholders.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Senior Data Scientist. You'll mentor junior team members, lead projects, and influence the company's data strategy.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Machine Learning Associate – Analyst</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹4-10 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, ML libraries, data analysis, feature engineering, model evaluation.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a foundational role. Your primary goal is to support senior ML Engineers by preparing data, running experiments, and evaluating models.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You can transition into a Machine Learning Engineer role by gaining more experience in model deployment, software development, and end-to-end project ownership.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Seniority is achieved after demonstrating expertise as a full-time ML engineer, not typically from this associate-level role.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>6. <span class="color-dot orange"></span>Generative AI & Large Language Models</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Content Engineer (text-to-image/video)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Deep learning, generative models (GANs, Diffusion), PyTorch, computer vision, creativity.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin by mastering existing generative models and learning to fine-tune them on small datasets. Focus on producing high-quality creative output.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Generative AI Engineer. You'll build custom models and pipelines for specific creative tasks, from concept to production.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Generative AI Artist or Engineer. You'll lead a team in creating new generative capabilities and pushing the boundaries of what is possible with AI-driven content creation.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Conversational AI Developer (chatbots, voice bots)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-20 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Python, NLP, chatbot frameworks (Rasa, Dialogflow), speech recognition (ASR), intent recognition.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Developer. Focus on building simple conversational flows and integrating existing APIs for voice or text assistants.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior Conversational AI Developer. You'll design and build complex, multi-turn dialogue systems and integrate them into large-scale enterprise applications.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Conversational AI Architect. You'll oversee the design of a company's entire conversational AI platform and mentor a team of developers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Generative AI Engineer (text, image, audio, video)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Deep learning, transformer models, PyTorch/TensorFlow, model training/fine-tuning, creativity.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as an Engineer-in-Training. Focus on fine-tuning existing models and learning the foundational principles of generative AI.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Generative AI Engineer. You'll work on building and optimizing custom generative models for various modalities and deploying them to production.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Principal Generative AI Engineer. You'll lead the technical direction for a company's generative AI products and mentor a team of engineers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">LLM Engineer – Fine-tuning Specialist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹15-35 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Deep learning, LLMs (GPT, Llama), fine-tuning techniques, PyTorch/Hugging Face, data curation.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior LLM Engineer. Focus on learning model architectures and running fine-tuning experiments under supervision.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an LLM Fine-tuning Specialist. You'll be the expert in training large models on proprietary data to achieve specific business goals, optimizing for performance and cost.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead LLM Architect. You'll be responsible for the company's entire LLM strategy, from model selection to fine-tuning and deployment pipelines.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Prompt Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Creative writing, deep understanding of LLM capabilities, knowledge of prompt design patterns, rapid iteration.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Junior Prompt Engineer. Focus on experimenting with different prompts to achieve a desired output, learning the nuances of LLMs.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Prompt Engineer. You'll work with product teams to design and test prompt templates that power customer-facing applications and internal tools.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Prompt Engineer. You'll be a recognized expert, responsible for developing and documenting a company’s prompt engineering best practices.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Retrieval-Augmented Generation (RAG) Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>NLP, vector databases, search algorithms, Python, LLMs, information retrieval systems.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as an Intern or Junior Engineer. Focus on building a basic RAG system using an open-source framework and a simple knowledge base.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a RAG Engineer. You'll build and optimize complex RAG systems that can ingest and retrieve from massive, real-time data sources.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead RAG Architect. You'll be responsible for designing the company’s entire RAG infrastructure, ensuring scalability, accuracy, and reliability.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Synthetic Data Engineer (creating datasets for LLMs)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Generative models, data augmentation, Python, data labeling, dataset quality assurance.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Data Annotation Specialist. Focus on accurately labeling and curating real-world data to prepare it for model training.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Synthetic Data Engineer. You'll use generative models and data augmentation techniques to create high-quality, artificial datasets to train and improve models, especially when real data is scarce.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Data Strategy. You'll be responsible for the company’s overall data acquisition and curation strategy, including the use of synthetic data generation at a massive scale.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>7. <span class="color-dot dark-green"></span>Leadership & Senior Specialist Roles</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Research Lead – Principal Scientist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹30-70+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>PhD in AI/ML, publications, research team leadership, strategic planning, deep technical expertise.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Mid-Career</h3>
+                        <p>This is not an entry-level role. It is a progression from a Senior Research Scientist after years of published work and demonstrated expertise in a specific field of AI.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>As a Principal Scientist, you'll lead a team of researchers, set the research agenda for the lab, and guide the direction of the company’s most innovative projects.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Solutions Practice Head</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹30-60+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Business development, client management, project delivery, team leadership, consulting.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Mid-Career</h3>
+                        <p>This is a progression from a Senior AI Consultant or Solutions Architect. You'll be responsible for managing a team of consultants and overseeing a portfolio of client projects.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>As a Practice Head, you'll be a key leader in the organization, driving business growth, building client relationships, and shaping the firm's strategic direction.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Chief AI Officer – Head of AI</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹50-150+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Corporate strategy, executive leadership, P&L management, long-term AI vision, C-suite communication.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Senior/Leadership</h3>
+                        <p>This is a C-suite executive role. The path to this position typically involves decades of experience, starting as a senior leader in engineering, product, or research, and culminating in a role that drives the company’s entire AI vision.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Director of Data Science & AI</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹35-80+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Team leadership, project portfolio management, budget management, strategic planning, technical oversight.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Mid-Career</h3>
+                        <p>This is a natural progression from a Lead Data Scientist or Principal Engineer. You'll be responsible for managing multiple teams and defining the AI strategy for a large department or business unit.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>As a Director, you are a senior leader. Your focus is on strategic planning, resource allocation, and mentorship. You will be a key decision-maker in the organization.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Lead Machine Learning Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹25-50 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Technical leadership, system design, mentorship, deep expertise in ML, architecture.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Mid-Career</h3>
+                        <p>This is a progression from a Senior ML Engineer. You'll take on a leadership role, guiding a team of engineers, reviewing code, and ensuring the technical quality of all projects.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>As a Lead Engineer, you are a technical leader. You'll be a key influencer in the engineering organization and may progress to a Director of Engineering or a Principal Engineer role.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Senior MLOps Architect</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹25-50 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Cloud architecture, DevOps, automation, CI/CD, infrastructure-as-code, scalability.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Mid-Career</h3>
+                        <p>This is a progression from a Senior MLOps Engineer. You'll be responsible for designing the MLOps architecture for large-scale enterprise systems, ensuring models can be deployed and managed efficiently.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>As a Senior Architect, you'll be a top-level expert in the field. You may progress to a Director of AI Infrastructure or a Principal Architect role, setting the technical strategy for the entire company.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>8. <span class="color-dot purple"></span>Research, Academia & Innovation</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">Academic Faculty in AI – Machine Learning</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>PhD in AI/ML, teaching experience, research portfolio, student mentorship.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a role for individuals with a fresh PhD. The path involves securing a tenure-track position and building a research group and teaching career.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You'll become an Associate Professor. You'll be leading your own research lab, securing grants, and publishing in top-tier journals.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You'll advance to a Full Professor. You'll be a recognized leader in your field, mentoring the next generation of researchers, and shaping the academic discourse on AI.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Lab Scientist – Engineer</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-30 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Strong research background, prototyping, algorithm development, experimentation.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a progression from a Postdoctoral Researcher or a PhD holder. The focus is on conducting foundational research and building experimental prototypes.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You'll become a Senior Lab Scientist. You'll lead specific research projects and transition your research into real-world applications within a corporate or academic lab setting.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You'll advance to a Lab Director or Research Lead. You'll be responsible for the overall research agenda of the lab, managing a team, and securing funding.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Research Scientist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹15-40 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>PhD/Masters, strong mathematics, publications, programming, deep learning research.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a progression from a PhD or Master's degree. The path involves working under a senior researcher, contributing to a research project, and publishing papers.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You'll become a Senior Research Scientist. You'll lead your own research projects, collaborate with external partners, and publish in top-tier conferences, becoming a recognized expert in your subfield.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You'll advance to a Principal Scientist. You'll be a leading figure in the field, guiding a team of researchers, and setting the direction for the company’s most important research initiatives.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Applied Scientist – AI/ML</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹15-35 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Research application, prototyping, deep technical skills, strong programming.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a progression from a PhD or a Master's degree with a focus on practical application. The path involves working to bridge the gap between research and production.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You'll become a Senior Applied Scientist. You'll be responsible for taking cutting-edge research and applying it to build innovative products and features.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You'll advance to a Principal Applied Scientist. You'll be a top-level expert, guiding a team of scientists and engineers to apply research breakthroughs at scale.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Postdoctoral Researcher – AI</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-15 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>PhD in AI/ML, specialized research, publications, grant writing.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a specialized academic role for recent PhD graduates. The path involves conducting advanced research and preparing for a long-term career in academia or industry.</p>
+                        <h3>Mid-Career</h3>
+                        <p>The progression is typically to a tenure-track faculty position in academia or to a Senior Research Scientist role in a corporate lab.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Seniority is not typical for this role. It is a transitional role that prepares you for more senior positions after completing your postdoctoral research.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Research Engineer – Foundation Models</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹18-40+ Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Deep learning, transformer models, large-scale training, infrastructure knowledge, distributed systems.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a high-demand, specialized role. The path involves working on large-scale models, assisting with training runs, and learning to manage a massive training infrastructure.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You'll become a Senior Research Engineer. You'll be responsible for optimizing the training and inference pipelines for multi-billion-parameter models and pushing the boundaries of what is possible.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You'll advance to a Principal Engineer. You'll be a top-level expert in large-scale model training and be responsible for the entire infrastructure and engineering strategy for foundation models.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="job-category">
+            <h2>9. <span class="color-dot brown"></span>Responsible & Ethical AI</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Compliance Officer (GDPR, HIPAA, etc.)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Legal/regulatory knowledge, data governance, privacy principles, audit and risk assessment.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Compliance Analyst. Focus on understanding data regulations and how they apply to AI systems.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an AI Compliance Officer. You'll be responsible for auditing and ensuring that all AI projects within the organization adhere to a complex set of legal and ethical standards.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Governance. You'll manage the entire compliance and governance program for the organization, working directly with C-suite executives.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Ethics Researcher</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-18 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Philosophy/sociology background, ethical frameworks, policy analysis, technical understanding of AI systems.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Research Assistant. Your focus is on studying the societal impact of AI and assisting in the development of ethical frameworks.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become an AI Ethics Researcher. You'll be responsible for your own research projects, publishing papers, and influencing the development of AI products with an ethical lens.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Senior AI Ethicist. You'll be a recognized expert, responsible for guiding a company's ethical principles and leading discussions on the future of AI ethics.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Fairness – Bias Auditor</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹10-22 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Bias detection, fairness metrics, data analysis, Python, statistical methods, explainable AI (XAI).</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Data Analyst with a focus on data quality. Focus on understanding data distributions and identifying potential sources of bias in datasets.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Bias Auditor. You'll use specialized tools and statistical methods to audit AI models for fairness, working to mitigate bias and ensure equitable outcomes.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Fairness & Transparency. You'll lead the company's entire bias auditing program, set standards for fairness, and report directly to leadership on the ethical performance of AI systems.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Policy & Governance Analyst</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹8-18 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Public policy, legal knowledge, AI regulation, government relations, policy writing.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Policy Analyst. Your focus is on researching and analyzing new regulations and their potential impact on AI development.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Governance Analyst. You'll be responsible for drafting internal policies and ensuring that AI projects are aligned with both internal and external governance frameworks.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Public Policy. You'll be responsible for the company's government relations and public policy strategy, representing the company in discussions with lawmakers.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Responsible AI Specialist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹12-25 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Interdisciplinary knowledge (tech, ethics, law), risk management, technical background, stakeholder management.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior Responsible AI Analyst. Your focus is on assisting senior specialists in risk assessments and ethical reviews of AI projects.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Responsible AI Specialist. You'll be responsible for conducting independent ethical reviews, providing guidance to product teams, and leading discussions on responsible AI development.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Lead Ethicist or Director of Responsible AI. You'll define the company's ethical principles and build the team responsible for ensuring all AI projects are developed with accountability and fairness in mind.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="job-category">
+            <h2>10. <span class="color-dot gear"></span>Supporting & Cross-Functional Roles</h2>
+            <ul style="counter-reset: item;">
+                <li>
+                    <h3 class="job-title">AI Customer Success – Implementation Specialist</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹6-15 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Client communication, product knowledge, project management, technical troubleshooting, training.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as an Implementation Specialist. You'll work with new clients to help them set up and use AI products, troubleshooting initial issues.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Customer Success Manager. You'll be responsible for managing a portfolio of key client accounts, ensuring they are getting value from the product and identifying new opportunities.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Customer Success. You'll manage the entire customer success organization and set the strategy for client retention and growth.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Quality Assurance Engineer (testing ML models)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹5-12 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>QA methodologies, Python, test automation, data validation, model performance metrics.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start as a Junior QA Engineer. Focus on manual testing and basic data validation of AI systems.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Senior QA Engineer. You'll develop and implement automated testing frameworks for AI models and data pipelines, ensuring model reliability.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a QA Lead. You'll lead the QA team, define the testing strategy for AI products, and ensure all systems meet high standards of quality.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Training Data Curator – Annotator</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹4-8 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Attention to detail, domain-specific knowledge, data labeling tools, data quality control.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>This is a foundational role. Your primary goal is to curate and annotate high-quality datasets that will be used to train AI models.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You can transition into a Data Curator or a Data Analyst role. You'll focus on ensuring data quality, creating data pipelines, and analyzing data to support model training.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You can advance to a Manager of Data Operations. You'll manage a team of data annotators and curators and be responsible for the company’s entire data labeling pipeline.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">AI Trainer (models and human teams)</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹7-18 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Strong communication, teaching ability, knowledge of ML models, curriculum design.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Start by providing training and support to small teams, helping them understand and use AI models effectively.</p>
+                        <h3>Mid-Career</h3>
+                        <p>You'll become a Senior AI Trainer. You'll develop and deliver comprehensive training programs for large organizations, ensuring their teams are skilled in AI.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>You'll advance to a Director of AI Learning. You'll oversee all AI training and education initiatives, both for employees and external partners.</p>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="job-title">Technical Recruiter – AI & ML talent</h3>
+                    <div class="job-info">
+                        <h4>Remuneration (India)</h4>
+                        <p>₹6-15 Lakhs per annum</p>
+                        <h4>Skills</h4>
+                        <p>Recruiting lifecycle, technical knowledge of AI roles, sourcing strategies, negotiation.</p>
+                    </div>
+                    <div class="roadmap">
+                        <h3>Entry-Level</h3>
+                        <p>Begin as a Recruiter. Focus on sourcing and screening candidates for entry-level tech roles. You'll learn to understand job descriptions and candidate skills.</p>
+                        <h3>Mid-Career</h3>
+                        <p>Become a Technical Recruiter specializing in AI. You'll develop expertise in the AI talent market, building a network of candidates and working with hiring managers to fill key roles.</p>
+                        <h3>Senior/Leadership</h3>
+                        <p>Advance to a Director of Talent Acquisition. You'll manage the entire recruiting function and develop the strategy for hiring the best AI talent for the company.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer-band">
+        <p>Your Guide to the Future of Work</p>
+    </footer>
+
+</body>
+</html>
