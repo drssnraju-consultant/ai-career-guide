@@ -11,22 +11,20 @@
             background-color: #f4f4f9;
             color: #333;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
             min-height: 100vh;
+            counter-reset: group-counter; /* Global counter for groups */
         }
-
         .header-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             background-color: #007BFF;
             color: white;
             padding: 15px 20px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 1000;
+            flex-shrink: 0;
         }
-        
         .header-banner h1 {
             margin: 0;
             font-size: 1.5em;
@@ -34,34 +32,27 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
         .main-content {
-            padding-top: 80px; /* Space for fixed header */
-            padding-bottom: 60px; /* Space for fixed footer */
+            overflow-y: auto;
             max-width: 900px;
             margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 20px;
             box-sizing: border-box;
+            flex-grow: 1;
         }
-        
         .footer-band {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
             background-color: #333;
             color: white;
             padding: 10px 20px;
             text-align: center;
             box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
             z-index: 1000;
+            flex-shrink: 0;
         }
-
         .job-category {
             margin-bottom: 20px;
+            counter-increment: group-counter; /* Increment for each category */
         }
-        
         .job-category h2 {
             margin-top: 0;
             border-bottom: 2px solid #e0e0e0;
@@ -70,44 +61,110 @@
             display: flex;
             align-items: center;
         }
-        
-        .job-category ul {
-            list-style-type: none;
+        .job-category h2::before {
+            content: counter(group-counter) ". "; /* Display the group number */
+            font-weight: bold;
+            color: #007bff;
+            margin-right: 5px;
+        }
+        .job-category > ol {
             padding: 0;
             margin: 0;
+            list-style-type: none;
+            counter-reset: job-counter; /* Reset job counter for each group */
         }
-        
-        .job-category li {
+        .job-category > ol > li {
             background-color: white;
             padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: relative;
-            padding-left: 50px;
         }
-        
-        .job-category li:last-child {
+        .job-category > ol > li:last-child {
             margin-bottom: 0;
         }
-        
-        .job-category li::before {
-            content: counter(item) ".";
-            counter-increment: item;
+        /* THIS IS THE CORRECTED SELECTOR FOR JOB NUMBERING */
+        .job-category > ol > li::before {
+            counter-increment: job-counter;
+            content: counter(group-counter) "." counter(job-counter) ". "; 
             font-weight: bold;
             color: #007bff;
             position: absolute;
             left: 20px;
         }
-        
+        .job-title {
+            font-weight: bold;
+            color: #0056b3;
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-left: 35px; 
+        }
+        .job-info {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 10px;
+            margin-left: 35px;
+        }
+        .job-info h4 {
+            font-size: 1em;
+            color: #0056b3;
+            margin: 0 0 5px 0;
+        }
+        .roadmap {
+            border-top: 1px solid #e0e0e0;
+            margin-top: 15px;
+            padding-top: 15px;
+            margin-left: 35px;
+        }
+        .roadmap h3 {
+            margin: 0 0 5px 0;
+            color: #0056b3;
+            font-size: 1em;
+        }
+        .roadmap p {
+            margin: 0 0 10px 0;
+            font-size: 0.85em;
+            color: #444;
+        }
+        .skills-list {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            margin-left: 35px;
+        }
+        .skills-list h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .skills-list > ul {
+            padding-left: 0;
+            margin-bottom: 10px;
+            list-style-type: none;
+        }
+        .skills-list li {
+            background-color: transparent;
+            box-shadow: none;
+            padding: 5px 0;
+            border-bottom: none;
+            position: static;
+            padding-left: 0;
+            margin-bottom: 5px;
+        }
+        .resource-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
         .color-dot {
             height: 14px;
             width: 14px;
             border-radius: 50%;
             display: inline-block;
             margin-right: 12px;
+            flex-shrink: 0;
         }
-        
         .color-dot.green { background-color: #28a745; }
         .color-dot.blue { background-color: #007bff; }
         .color-dot.orange { background-color: #fd7e14; }
@@ -118,40 +175,6 @@
         .color-dot.light-gray { background-color: #adb5bd; border: 1px solid #ccc; }
         .color-dot.dark-green { background-color: #044b1c; }
         .color-dot.gear { background-color: #6c757d; }
-
-        .job-title {
-            font-weight: bold;
-            color: #0056b3;
-            font-size: 1.1em;
-            margin-top: 0;
-        }
-        .job-info {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 10px;
-        }
-        .job-info h4 {
-            font-size: 1em;
-            color: #0056b3;
-            margin: 0 0 5px 0;
-        }
-
-        .roadmap {
-            border-top: 1px solid #e0e0e0;
-            margin-top: 15px;
-            padding-top: 15px;
-        }
-
-        .roadmap h3 {
-            margin: 0 0 5px 0;
-            color: #0056b3;
-            font-size: 1em;
-        }
-        .roadmap p {
-            margin: 0;
-            font-size: 0.85em;
-            color: #444;
-        }
     </style>
 </head>
 <body>
@@ -162,8 +185,8 @@
 
     <main class="main-content">
         <div class="job-category">
-            <h2>1. <span class="color-dot light-gray"></span>AI for Domain Applications</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot light-gray"></span>AI for Domain Applications</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Engineer – Healthcare, Finance, Retail, Agriculture, Education, Manufacturing</h3>
                     <div class="job-info">
@@ -179,6 +202,55 @@
                         <p>Progress to an AI Specialist or Lead Engineer. You'll design and implement solutions for more complex, domain-specific challenges, such as fraud detection or patient outcome prediction. This stage requires deep industry knowledge and the ability to lead small projects.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Principal AI Engineer or Head of AI for a Business Unit. You'll set the technical strategy for an entire department, mentor teams, and become a subject matter expert, identifying high-impact AI opportunities within the domain.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/python-for-everybody" target="_blank">Python for Everybody Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.codecademy.com/learn/learn-python-3" target="_blank">Learn Python 3</a> (Codecademy)</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/python-for-everybody/" target="_blank">Python for Everybody</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.edx.org/course/introduction-to-python-programming" target="_blank">Introduction to Python Programming</a> (edX)</li>
+                                    <li><a href="https://developers.google.com/edu/python" target="_blank">Google's Python Class</a> (Google Developers)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>ML/DL frameworks</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/learn/introduction-to-tensorflow-for-ai-ml-and-dl" target="_blank">Introduction to TensorFlow for AI, ML, and DL</a> (Coursera)</li>
+                                    <li><a href="https://www.tensorflow.org/learn/tutorials" target="_blank">TensorFlow Official Tutorials</a> (TensorFlow.org)</li>
+                                    <li><a href="https://www.greatlearning.in/academy/learn-for-free/courses/tensorflow-python" target="_blank">TensorFlow Python Course with Certificate</a> (Great Learning)</li>
+                                    <li><a href="https://www.coursera.org/specializations/natural-language-processing" target="_blank">Natural Language Processing Specialization</a> (Coursera)</li>
+                                    <li><a href="https://opencv.org/university/free-tensorflow-keras-course/" target="_blank">FREE TensorFlow course from OpenCV University</a> (OpenCV University)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Domain-specific knowledge</h4>
+                                <p>Learning is highly specific. Look for industry-specific certifications, reports, and specialized MOOCs (e.g., healthcare analytics courses from MIT on edX, or financial AI courses on Coursera).</p>
+                            </li>
+                            <li>
+                                <h4>Data visualization</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.edx.org/learn/data-visualization" target="_blank">Data Visualization for All</a> (edX)</li>
+                                    <li><a href="https://www.datacamp.com/courses/data-visualization-with-python" target="_blank">Data Visualization with Python</a> (DataCamp)</li>
+                                    <li><a href="https://www.coursera.org/learn/data-visualization-in-tableau" target="_blank">Data Visualization with Tableau</a> (Coursera)</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/data-analysis-with-python/data-visualization-with-matplotlib-and-seaborn/introduction-to-data-visualization" target="_blank">Data Visualization with Matplotlib and Seaborn</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.kaggle.com/learn/data-visualization" target="_blank">Data Visualization</a> (Kaggle)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>API integration</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.mygreatlearning.com/api/free-courses" target="_blank">Free API Courses Online with Certificates</a> (Great Learning)</li>
+                                    <li><a href="https://www.coursera.org/learn/api-integration---end-to-end-web-development" target="_blank">API Integration - End to End Web Development</a> (Coursera)</li>
+                                    <li><a href="https://www.postman.com/company/blog/api-learning-resources/" target="_blank">API Learning Resources</a> (Postman)</li>
+                                    <li><a href="https://www.udemy.com/course/rest-api-for-beginners-in-20-minutes/" target="_blank">REST API for Beginners in 20 Minutes</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=GjYJ5Pq-Ew8" target="_blank">What are APIs? - Simply Explained</a> (Fireship, YouTube)</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -197,6 +269,61 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Principal Threat Intelligence Architect. You'll lead a team to design and implement a company's end-to-end AI-driven security strategy.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/python-for-everybody" target="_blank">Python for Everybody Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.codecademy.com/learn/learn-python-3" target="_blank">Learn Python 3</a> (Codecademy)</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/python-for-everybody/" target="_blank">Python for Everybody</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.edx.org/course/introduction-to-python-programming" target="_blank">Introduction to Python Programming</a> (edX)</li>
+                                    <li><a href="https://developers.google.com/edu/python" target="_blank">Google's Python Class</a> (Google Developers)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Network security</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/courses?query=network%20security" target="_blank">Network Security courses</a> (Coursera)</li>
+                                    <li><a href="https://www.cybrary.it/course/intro-to-cyber-threat-intelligence" target="_blank">Intro to Cyber Threat Intelligence</a> (Cybrary)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/how-to-start-a-career-in-cybersecurity-for-beginners-in-2022/" target="_blank">How to Start a Career in Cybersecurity</a> (freeCodeCamp)</li>
+                                    <li><a href="https://trailhead.salesforce.com/content/learn/modules/threat-intelligence-basics" target="_blank">Threat Intelligence Basics</a> (Salesforce Trailhead)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=kYn_sLzE30o" target="_blank">Cybersecurity Full Course for Beginners</a> (freeCodeCamp, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Threat analysis</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.classcentral.com/subject/threat-intelligence" target="_blank">800+ Threat Intelligence Online Courses</a> (Class Central)</li>
+                                    <li><a href="https://www.udemy.com/course/cyber-security-threat-intelligence-researcher/" target="_blank">Cyber Security Threat Intelligence Researcher Preview</a> (Udemy)</li>
+                                    <li><a href="https://www.coursera.org/courses/cyber-threat-intelligence" target="_blank">Cyber Threat Intelligence</a> (Coursera)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=S0y_zT9t5mQ" target="_blank">What is Threat Intelligence?</a> (IBM, YouTube)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=yW2f4Q81F38" target="_blank">Learning Threat Intelligence</a> (LinkedIn Learning)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>ML for anomaly detection</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/learn/anomaly-detection-via-pycaret" target="_blank">Machine Learning - Anomaly Detection via PyCaret</a> (Coursera)</li>
+                                    <li><a href="https://www.coursera.org/learn/advanced-malware-and-network-anomaly-detection" target="_blank">Advanced Malware and Network Anomaly Detection</a> (Johns Hopkins University, Coursera)</li>
+                                    <li><a href="https://www.geeksforgeeks.org/machine-learning/machine-learning-for-anomaly-detection/" target="_blank">Machine Learning for Anomaly Detection</a> (GeeksforGeeks)</li>
+                                    <li><a href="https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning" target="_blank">Unsupervised Learning, Recommenders, Reinforcement Learning</a> (DeepLearning.AI, Coursera)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=Vl0y5d-M2J4" target="_blank">Anomaly Detection Tutorial with Python</a> (Towards Data Science, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Data forensics</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.securityblue.team/courses/introduction-to-digital-forensics" target="_blank">Introduction To Digital Forensics</a> (Security Blue Team)</li>
+                                    <li><a href="https://alison.com/course/diploma-in-digital-forensic-investigation" target="_blank">Diploma in Digital Forensic Investigation</a> (Alison)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=digital%20forensics" target="_blank">Digital Forensics courses</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/topic/digital-forensics/" target="_blank">Digital Forensics Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=B7b8H8Z8K_I" target="_blank">What is Digital Forensics?</a> (Simplilearn, YouTube)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI in Gaming / AR / VR Developer</h3>
@@ -214,8 +341,45 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Lead AI Engineer for a gaming studio. You'll oversee the entire AI development pipeline for major titles and set the creative and technical direction.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>C++/C#</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.geeksforgeeks.org/blogs/best-free-cpp-courses/" target="_blank">Best Free C++ Online Courses</a> (GeeksforGeeks)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=c%2B%2B" target="_blank">C++ For C Programmers</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/cpp-tutorial-for-complete-beginners/" target="_blank">C++ Tutorial for Complete Beginners</a> (Udemy)</li>
+                                    <li><a href="https://www.sololearn.com/learning/1051" target="_blank">C# Tutorial</a> (SoloLearn)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/learn-c-sharp-for-beginners-full-course/" target="_blank">Learn C# for Beginners</a> (freeCodeCamp, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>ML algorithms</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" in the Core AI & ML category for this skill.</p>
+                            </li>
+                            <li>
+                                <h4>Game engines (Unity/Unreal)</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://learn.unity.com/" target="_blank">Unity Learn</a> (Unity Technologies)</li>
+                                    <li><a href="https://www.unrealengine.com/en-US/online-learning-courses" target="_blank">Unreal Engine Learning</a> (Epic Games)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/how-to-make-a-game-in-unity/" target="_blank">How to Make a Game in Unity</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.udemy.com/topic/unity/" target="_blank">Unity Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=F_f-eS1I0-Y" target="_blank">Unreal Engine 5 for Beginners</a> (freeCodeCamp, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Behavioral AI</h4>
+                                <p>Search for tutorials on "behavior trees," "state machines," and "pathfinding algorithms" in game development, which are core concepts of behavioral AI.</p>
+                            </li>
+                            <li>
+                                <h4>Computer vision</h4>
+                                <p>Refer to resources for "Computer Vision Engineer" in the Core AI & ML category.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li>
+                 <li>
                     <h3 class="job-title">Autonomous Vehicle Engineer / Perception Engineer</h3>
                     <div class="job-info">
                         <h4>Remuneration (India)</h4>
@@ -230,6 +394,43 @@
                         <p>Progress to a specialized Perception Engineer. You'll integrate data from multiple sensors (LiDAR, cameras) to build a complete picture of the environment.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Move to Principal or Lead AV Engineer. You'll be responsible for the entire perception system, ensuring safety and reliability, and mentoring junior engineers.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>C++</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.geeksforgeeks.org/blogs/best-free-cpp-courses/" target="_blank">Best Free C++ Online Courses</a> (GeeksforGeeks)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=c%2B%2B" target="_blank">C++ For C Programmers</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/cpp-tutorial-for-complete-beginners/" target="_blank">C++ Tutorial for Complete Beginners</a> (Udemy)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/learn-c-for-beginners/" target="_blank">C++ Full Course for Beginners</a> (freeCodeCamp, YouTube)</li>
+                                    <li><a href="https://www.learncpp.com/" target="_blank">Learn C++</a> (learncpp.com)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in this same category.</p>
+                            </li>
+                            <li>
+                                <h4>Computer Vision</h4>
+                                <p>Refer to resources for "Computer Vision Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Sensor fusion / Robotics</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.raspberrypi.org/courses/electronics-and-robotics" target="_blank">Electronics and Robotics Courses</a> (Raspberry Pi Foundation)</li>
+                                    <li><a href="https://app.theconstruct.ai/courses/" target="_blank">The Construct: Robotics & ROS Online Courses</a> (The Construct)</li>
+                                    <li><a href="https://www.edx.org/course/robotics-an-introduction-to-robotics" target="_blank">Robotics: An Introduction to Robotics</a> (edX)</li>
+                                    <li><a href="https://www.udacity.com/course/robotics-nanodegree--nd209" target="_blank">Robotics Software Engineer Nanodegree</a> (Udacity)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=robotics%20ros" target="_blank">Robotics and ROS courses</a> (Coursera)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Deep learning for perception</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" in the Core AI & ML category.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -248,6 +449,39 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Robotics Program Lead. You'll oversee the development of a full line of robotic products and manage a team of engineers and scientists.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python & C++</h4>
+                                <p>Refer to resources for "AI Engineer" and "Autonomous Vehicle Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>ROS (Robot Operating System)</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://app.theconstruct.ai/courses/" target="_blank">ROS Online Courses</a> (The Construct)</li>
+                                    <li><a href="https://robocademy.com/2020/04/28/top-free-tutorials-to-learn-ros-robot-operating-system/" target="_blank">Top FREE tutorials to learn ROS</a> (Robocademy)</li>
+                                    <li><a href="https://app.theconstruct.ai/courses/ros-basics-in-5-days-python" target="_blank">ROS Basics in 5 Days (Python)</a> (The Construct)</li>
+                                    <li><a href="https://app.theconstruct.ai/courses/ros-basics-in-5-days-c" target="_blank">ROS Basics in 5 Days (C++)</a> (The Construct)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=robotics%20ros" target="_blank">Robotics and ROS courses</a> (Coursera)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Reinforcement learning</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/learn/reinforcement-learning-engineers" target="_blank">Reinforcement Learning</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/reinforcement-learning-in-python/" target="_blank">Reinforcement Learning in Python</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/playlist?list=PL_XqL5Xy5N9I9y0gP_8q5c6w_6M_x0q6J" target="_blank">Reinforcement Learning Course</a> (DeepMind, YouTube)</li>
+                                    <li><a href="https://www.edx.org/course/reinforcement-learning" target="_blank">Reinforcement Learning</a> (edX)</li>
+                                    <li><a href="https://app.theconstruct.ai/courses/mastering-reinforcement-learning-for-robotics-python" target="_blank">Mastering Reinforcement Learning for Robotics</a> (The Construct)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Control systems</h4>
+                                <p>Search for courses on "modern control systems" and "robot kinematics." Many universities offer free courses on platforms like edX and Coursera on these topics.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Smart IoT / Edge AI Developer</h3>
@@ -265,13 +499,50 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to IoT Solutions Architect. You'll design and oversee the entire ecosystem of smart devices and their AI capabilities for large-scale projects.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Embedded systems</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://alison.com/course/introduction-to-embedded-systems" target="_blank">Introduction to Embedded Systems</a> (Alison)</li>
+                                    <li><a href="https://www.nielit.gov.in/calicut/content/embedded-beginners" target="_blank">Embedded for Beginners - SMART Lab Free Course</a> (NIELIT)</li>
+                                    <li><a href="https://www.udemy.com/topic/embedded-systems/" target="_blank">Embedded Systems Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.edx.org/learn/embedded-systems" target="_blank">Embedded Systems Essentials with Arm</a> (edX)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=embedded%20systems" target="_blank">Embedded Systems courses</a> (Coursera)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>C/C++ & Python</h4>
+                                <p>Refer to resources for "AI Engineer" and "Autonomous Vehicle Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>TensorFlow Lite</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.tensorflow.org/lite/tutorials" target="_blank">TensorFlow Lite official tutorials</a> (TensorFlow.org)</li>
+                                    <li><a href="https://www.udacity.com/course/intro-to-tensorflow-lite--ud190" target="_blank">Introduction to TensorFlow Lite</a> (Udacity)</li>
+                                    <li><a href="https://sensiml.com/documentation/sensiml-python-sdk/additional-tutorials/tensorflow-lite-tutorial.html" target="_blank">TensorFlow Lite Tutorial</a> (SensiML)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=F_f-eS1I0-Y" target="_blank">TensorFlow Lite: Building an Android App</a> (Google Developers, YouTube)</li>
+                                    <li><a href="https://developers.google.com/machine-learning/crash-course" target="_blank">Machine Learning Crash Course</a> (Google)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Communication protocols</h4>
+                                <p>Search for tutorials on protocols like MQTT, LoRaWAN, and Zigbee from hardware providers like Arduino, Raspberry Pi, and SparkFun.</p>
+                            </li>
+                            <li>
+                                <h4>Hardware knowledge</h4>
+                                <p>Many resources exist for getting started with microcontrollers like Arduino and Raspberry Pi. Check out their official websites and free tutorials on YouTube.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
-
+        
         <div class="job-category">
-            <h2>2. <span class="color-dot red"></span>AI Product, Strategy & Business</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot red"></span>AI Product, Strategy & Business</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Business Analyst</h3>
                     <div class="job-info">
@@ -287,6 +558,37 @@
                         <p>Progress to a Senior Business Analyst or a Product Manager. You'll lead the discovery phase for new AI products and own the business case and feature prioritization.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Business Strategy. You'll identify new market opportunities for AI and manage a portfolio of AI-driven initiatives.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Business process analysis</h4>
+                                <p>Look for courses from business schools on platforms like Coursera and edX. Many offer free audit options.</p>
+                            </li>
+                            <li>
+                                <h4>SQL</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.khanacademy.org/computing/computer-programming/sql" target="_blank">Intro to SQL</a> (Khan Academy)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=sql" target="_blank">SQL for Data Science</a> (Coursera)</li>
+                                    <li><a href="https://www.edx.org/course/sql-for-data-science" target="_blank">SQL for Data Science</a> (edX)</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/relational-database/" target="_blank">Relational Database Certification</a> (freeCodeCamp)</li>
+                                    <li><a href="https://sqlbolt.com/" target="_blank">SQLBolt</a> (Interactive SQL tutorials)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Data storytelling</h4>
+                                <p>Look for data visualization courses, as they often cover storytelling. Coursera has a great course called "Communicating with Data."</p>
+                            </li>
+                            <li>
+                                <h4>AI/ML concepts</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Communication & stakeholder management</h4>
+                                <p>Look for soft skills courses on platforms like Coursera and edX from top business schools. Many of these courses are available to audit for free.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -305,6 +607,36 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Partner or Practice Head. You'll oversee the entire AI consulting business unit, drive sales, and shape the firm's strategic direction.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Business acumen</h4>
+                                <p>Look for courses like "The Business of AI" on Coursera or similar business strategy courses on edX.</p>
+                            </li>
+                            <li>
+                                <h4>Market analysis</h4>
+                                <p>Many platforms offer free tutorials on market research. Look for courses that teach you how to analyze market trends and competitive landscapes.</p>
+                            </li>
+                            <li>
+                                <h4>AI strategy</h4>
+                                <p>Refer to the "AI for Everyone" course on Coursera by Andrew Ng for a foundational understanding of AI business strategy. For more advanced topics, look for corporate case studies and whitepapers from leading tech companies.</p>
+                            </li>
+                            <li>
+                                <h4>Project management</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/google-project-management" target="_blank">Google Project Management Certificate</a> (Coursera)</li>
+                                    <li><a href="https://www.edx.org/course/project-management-essentials" target="_blank">Project Management Essentials</a> (edX)</li>
+                                    <li><a href="https://www.udemy.com/topic/agile-project-management/" target="_blank">Agile Project Management Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.pmi.org/learning/training-development/free-resources" target="_blank">Free Project Management Resources</a> (PMI.org)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Client relations & domain expertise</h4>
+                                <p>These are best learned through practical experience, but courses on communication, negotiation, and industry-specific topics can be helpful.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Evangelist / Developer Advocate</h3>
@@ -321,6 +653,41 @@
                         <p>Become a Senior Evangelist. You'll be a recognized voice in the AI community, influencing the product roadmap based on community feedback and leading the developer relations team.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Developer Relations. You'll manage a global team of advocates and set the strategy for engaging the AI developer community.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Public speaking</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/learn/public-speaking" target="_blank">Introduction to Public Speaking</a> (University of Washington, Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/effective-public-speaking/" target="_blank">Effective Public Speaking</a> (Udemy)</li>
+                                    <li><a href="https://www.toastmasters.org/resources" target="_blank">Toastmasters Resources</a> (Toastmasters International)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=kYn_sLzE30o" target="_blank">Public Speaking for Beginners</a> (freeCodeCamp, YouTube)</li>
+                                    <li><a href="https://www.edx.org/course/speaking-with-confidence-for-public-speaking-and-presentations" target="_blank">Speaking with Confidence</a> (edX)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Technical writing</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/learn/technical-writing-introduction" target="_blank">Technical Writing: Introduction</a> (Coursera)</li>
+                                    <li><a href="https://developers.google.com/tech-writing" target="_blank">Technical Writing Courses</a> (Google)</li>
+                                    <li><a href="https://www.udemy.com/topic/technical-writing/" target="_blank">Technical Writing Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/technical-writing-for-beginners/" target="_blank">Technical Writing for Beginners</a> (freeCodeCamp)</li>
+                                    <li><a href="https://learning.linkedin.com/blog/customer-service/what-is-technical-writing--and-how-to-do-it-well" target="_blank">What is Technical Writing?</a> (LinkedIn Learning)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Community building</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/courses?query=community%20management" target="_blank">Community Management and Leadership courses</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/build-grow-a-thriving-community-group/" target="_blank">Build & Grow A Thriving Community</a> (Udemy)</li>
+                                    <li><a href="https://www.c-s-a.org/learn/the-community-management-certificate/" target="_blank">Community Management Certificate</a> (Community & Social Association)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/community-building-for-developers/" target="_blank">Community Building for Developers</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=F_f-eS1I0-Y" target="_blank">Community Building Masterclass</a> (Fireship, YouTube)</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -339,6 +706,28 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of AI Programs. You'll be responsible for the delivery of the company’s entire AI portfolio and manage a team of program managers.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Project management methodologies</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/google-project-management" target="_blank">Google Project Management Certificate</a> (Coursera)</li>
+                                    <li><a href="https://www.edx.org/course/project-management-essentials" target="_blank">Project Management Essentials</a> (edX)</li>
+                                    <li><a href="https://www.udemy.com/topic/agile-project-management/" target="_blank">Agile Project Management Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.pmi.org/learning/training-development/free-resources" target="_blank">Free Project Management Resources</a> (PMI.org)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Resource planning & risk management</h4>
+                                <p>These skills are often part of project management courses. Look for specific modules on risk analysis, budget management, and resource allocation in courses from platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Cross-functional team leadership</h4>
+                                <p>Look for courses on leadership, communication, and team management from business schools on Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Product Manager</h3>
@@ -355,6 +744,28 @@
                         <p>Become a Product Manager. You'll own a specific AI product, defining its vision, managing the backlog, and leading the cross-functional team.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Group Product Manager or Director of Product. You'll manage a portfolio of AI products and mentor a team of product managers.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Product roadmap</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/learn/agile-with-atlassian-jira" target="_blank">Agile with Atlassian Jira</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/topic/product-roadmap/" target="_blank">Product Roadmap Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.edx.org/course/product-management-for-new-products" target="_blank">Product Management for New Products</a> (edX)</li>
+                                    <li><a href="https://www.productplan.com/learn/product-roadmaps-guide/" target="_blank">Product Roadmaps Guide</a> (ProductPlan)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>User research & business case development</h4>
+                                <p>Look for courses on UX research and business strategy on platforms like Coursera, edX, and Udacity.</p>
+                            </li>
+                            <li>
+                                <h4>AI technology trends & data-driven decision-making</h4>
+                                <p>Courses on AI and data science are essential. Refer to resources for "Machine Learning Engineer" in the Core AI & ML category.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -373,6 +784,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal Architect. You'll lead the architectural vision for an entire organization's AI initiatives, influencing company-wide technical strategy.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Cloud architecture</h4>
+                                <p>Look for free courses and documentation from AWS, Azure, and Google Cloud. All three offer extensive free resources to get started.</p>
+                            </li>
+                            <li>
+                                <h4>System design</h4>
+                                <p>Look for tutorials on "system design for beginners" and architecture patterns for large-scale applications on platforms like freeCodeCamp, GeeksforGeeks, and YouTube.</p>
+                            </li>
+                            <li>
+                                <h4>AI/ML model deployment</h4>
+                                <p>Refer to resources for "MLOps Engineer" in the Data, Infrastructure & Ops category.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Technical Writer / Documentation Specialist</h3>
@@ -390,13 +818,30 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Documentation Lead. You'll manage a team of writers and define the documentation standards and strategy for the company's AI portfolio.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Excellent writing skills</h4>
+                                <p>Look for writing courses on platforms like Coursera and edX. The "Technical Writing" course from Google is highly recommended.</p>
+                            </li>
+                            <li>
+                                <h4>AI/ML concepts</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>API documentation</h4>
+                                <p>Look for courses on tools like Swagger/OpenAPI and Postman. A great free resource is Google's "Technical Writing" course.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
         
         <div class="job-category">
-            <h2>3. <span class="color-dot blue"></span>Core AI & Machine Learning Engineering</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot blue"></span>Core AI & Machine Learning Engineering</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Algorithm Engineer</h3>
                     <div class="job-info">
@@ -412,6 +857,39 @@
                         <p>Progress to a Senior Algorithm Engineer. You'll design novel algorithms and lead their implementation, solving complex computational problems for production systems.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal Algorithm Scientist. You'll be a company-wide expert, responsible for designing and patenting new algorithms that give the company a competitive advantage.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Advanced mathematics</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.khanacademy.org/math/linear-algebra" target="_blank">Linear Algebra</a> (Khan Academy)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=multivariable%20calculus" target="_blank">Multivariable Calculus</a> (Coursera)</li>
+                                    <li><a href="https://www.edx.org/course/differential-equations" target="_blank">Differential Equations</a> (edX)</li>
+                                    <li><a href="https://ocw.mit.edu/courses/mathematics/" target="_blank">MIT OpenCourseWare - Mathematics</a> (MIT)</li>
+                                    <li><a href="https://www.3blue1brown.com/lessons/linear-algebra" target="_blank">Essence of Linear Algebra</a> (3Blue1Brown, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>C++</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Algorithm optimization & data structures</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/data-structures-algorithms" target="_blank">Data Structures and Algorithms Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" target="_blank">JavaScript Algorithms and Data Structures</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.geeksforgeeks.org/data-structures/" target="_blank">Data Structures</a> (GeeksforGeeks)</li>
+                                    <li><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/" target="_blank">Design and Analysis of Algorithms</a> (MIT OpenCourseWare)</li>
+                                    <li><a href="https://www.youtube.com/playlist?list=PLB01B7C72B4B27AE2" target="_blank">Introduction to Algorithms</a> (MIT, YouTube)</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -430,6 +908,37 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal Vision Scientist. You'll lead research and development for new vision capabilities, mentor a team, and set the technical direction for all vision-related projects.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>OpenCV</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://docs.opencv.org/4.x/d9/df8/tutorial_root.html" target="_blank">OpenCV Official Tutorials</a> (OpenCV.org)</li>
+                                    <li><a href="https://www.pyimagesearch.com/start-here/" target="_blank">PyImageSearch Tutorials</a> (PyImageSearch)</li>
+                                    <li><a href="https://www.udemy.com/course/computer-vision-in-python-opencv-and-ai-a-z-in-2023/" target="_blank">Computer Vision with OpenCV</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/playlist?list=PLQVvvaa0QuDdttJp-ES_d4_hV_lG4rW7F" target="_blank">OpenCV with Python</a> (sentdex, YouTube)</li>
+                                    <li><a href="https://www.youtube.com/playlist?list=PL_XqL5Xy5N9I9y0gP_8q5c6w_6M_x0q6J" target="_blank">Computer Vision Course</a> (Stanford, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>TensorFlow/PyTorch</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Image processing & object detection</h4>
+                                <p>Look for courses on computer vision and image processing. The "Computer Vision" specialization on Coursera is a great start.</p>
+                            </li>
+                            <li>
+                                <h4>Deep learning for vision tasks</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" in this same category.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Data Scientist – Machine Learning</h3>
@@ -446,6 +955,41 @@
                         <p>Progress to a Data Scientist. You'll build, train, and validate machine learning models to solve complex business problems, communicating your findings to stakeholders.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Data Scientist or Director of Data Science. You'll manage a team of data scientists, define the data strategy, and ensure projects drive significant business value.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python/R</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/python-for-everybody" target="_blank">Python for Everybody Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.codecademy.com/learn/learn-r" target="_blank">Learn R</a> (Codecademy)</li>
+                                    <li><a href="https://www.freecodecamp.org/learn/data-analysis-with-python/" target="_blank">Data Analysis with Python</a> (freeCodeCamp)</li>
+                                    <li><a href="https://www.edx.org/course/introduction-to-r-for-data-science" target="_blank">Introduction to R for Data Science</a> (edX)</li>
+                                    <li><a href="https://www.datacamp.com/courses/data-scientist-with-r-track" target="_blank">Data Scientist with R Track</a> (DataCamp)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Data analysis & statistical modeling</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/data-science-statistics-python" target="_blank">Statistics for Data Science with Python</a> (Coursera)</li>
+                                    <li><a href="https://www.khanacademy.org/math/statistics-probability" target="_blank">Statistics and Probability</a> (Khan Academy)</li>
+                                    <li><a href="https://www.udemy.com/topic/statistics-for-data-science/" target="_blank">Statistics for Data Science Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.edx.org/course/introduction-to-data-science" target="_blank">Introduction to Data Science</a> (edX)</li>
+                                    <li><a href="https://www.kaggle.com/learn/intro-to-statistical-learning" target="_blank">Intro to Statistical Learning</a> (Kaggle)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Scikit-learn</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://scikit-learn.org/stable/tutorial/index.html" target="_blank">Scikit-learn Official Tutorials</a> (scikit-learn.org)</li>
+                                    <li><a href="https://www.datacamp.com/courses/supervised-learning-with-scikit-learn" target="_blank">Supervised Learning with scikit-learn</a> (DataCamp)</li>
+                                    <li><a href="https://www.coursera.org/specializations/machine-learning" target="_blank">Machine Learning Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/scikit-learn-with-python-for-data-science/" target="_blank">Scikit-learn with Python for Data Science</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=kYn_sLzE30o" target="_blank">Scikit-learn Full Course</a> (freeCodeCamp, YouTube)</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -464,6 +1008,29 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Deep Learning Scientist. You'll be responsible for guiding research, mentoring junior engineers, and setting the technical direction for the deep learning team.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python & TensorFlow/PyTorch</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Neural networks</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank">Deep Learning Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/course/deep-learning-prerequisites-the-numpy-stack-in-python/" target="_blank">Deep Learning Prerequisites</a> (Udemy)</li>
+                                    <li><a href="https://www.edx.org/course/deep-learning-fundamentals" target="_blank">Deep Learning Fundamentals</a> (edX)</li>
+                                    <li><a href="https://ocw.mit.edu/courses/mathematics/" target="_blank">MIT OpenCourseWare - Mathematics</a> (MIT)</li>
+                                    <li><a href="https://www.kaggle.com/learn/intro-to-deep-learning" target="_blank">Intro to Deep Learning</a> (Kaggle)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Computer vision & NLP</h4>
+                                <p>Refer to resources for "Computer Vision Engineer" and "NLP Engineer" in this same category.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Machine Learning Engineer (general)</h3>
@@ -480,6 +1047,31 @@
                         <p>Progress to a Senior ML Engineer. You'll take ownership of the end-to-end ML lifecycle for production systems, from data ingestion to model serving and monitoring.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead ML Engineer. You'll lead a team of engineers, design system architecture, and serve as a technical expert for the entire ML function.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>ML frameworks</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Data engineering</h4>
+                                <p>Refer to resources for "Data Engineer" in the Data, Infrastructure & Ops category.</p>
+                            </li>
+                            <li>
+                                <h4>Model deployment</h4>
+                                <p>Refer to resources for "Model Deployment Engineer" in the Data, Infrastructure & Ops category.</p>
+                            </li>
+                            <li>
+                                <h4>Software development</h4>
+                                <p>Look for courses on software engineering best practices, design patterns, and version control (Git) on platforms like freeCodeCamp and Coursera.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -498,6 +1090,35 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal NLP Scientist. You'll lead research and development for the company’s NLP capabilities and guide a team of engineers.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>NLTK/SpaCy</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.nltk.org/howto.html" target="_blank">NLTK Official How-to</a> (NLTK.org)</li>
+                                    <li><a href="https://spacy.io/usage/training" target="_blank">SpaCy Official Training Docs</a> (spaCy.io)</li>
+                                    <li><a href="https://www.datacamp.com/courses/nlp-fundamentals-in-python" target="_blank">NLP Fundamentals in Python</a> (DataCamp)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=kYn_sLzE30o" target="_blank">NLP with Python Course</a> (freeCodeCamp, YouTube)</li>
+                                    <li><a href="https://www.edx.org/course/natural-language-processing-nlp" target="_blank">Natural Language Processing</a> (edX)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Transformer models & LLMs</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://huggingface.co/learn/nlp-course" target="_blank">Hugging Face NLP Course</a> (Hugging Face)</li>
+                                    <li><a href="https://www.coursera.org/specializations/natural-language-processing" target="_blank">Natural Language Processing Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.deeplearning.ai/courses/building-llm-applications/" target="_blank">Building LLM Applications</a> (DeepLearning.AI)</li>
+                                    <li><a href="https://www.udemy.com/topic/llms-large-language-models/" target="_blank">LLM Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=F_f-eS1I0-Y" target="_blank">Transformers Explained Visually</a> (Jay Alammar, YouTube)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Predictive Analytics Engineer</h3>
@@ -514,6 +1135,23 @@
                         <p>Become a Predictive Analytics Engineer. You'll design and implement advanced predictive models to forecast business metrics and drive strategic decisions.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Analyst. You'll oversee all predictive modeling efforts for a business unit and mentor junior analysts.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python/R & SQL</h4>
+                                <p>Refer to resources for "Data Scientist" and "AI Business Analyst" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Statistical analysis & regression modeling</h4>
+                                <p>Refer to resources for "Data Scientist" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Time-series forecasting</h4>
+                                <p>Refer to resources for "Time-Series Modelling Engineer" in this category.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -532,6 +1170,27 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Principal RL Scientist. You'll lead the research and development of new RL algorithms and applications for the company.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Strong math background & deep learning</h4>
+                                <p>Refer to resources for "AI Algorithm Engineer" and "Deep Learning Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Simulation environments</h4>
+                                <p>Look for tutorials on platforms like OpenAI Gym and Unity ML-Agents. These are key tools for developing and testing RL models.</p>
+                            </li>
+                            <li>
+                                <h4>Algorithm development</h4>
+                                <p>Refer to resources for "AI Algorithm Engineer" in this category.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Speech Recognition Engineer</h3>
@@ -548,6 +1207,23 @@
                         <p>Become a Senior Speech Recognition Engineer. You'll build and optimize custom speech-to-text models for specific languages and use cases.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Speech Scientist. You'll be responsible for the entire speech recognition pipeline and lead research into new acoustic modeling techniques.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python & deep learning</h4>
+                                <p>Refer to resources for "AI Engineer" and "Deep Learning Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Signal processing & audio data analysis</h4>
+                                <p>Look for courses on digital signal processing and audio analysis on platforms like Coursera and edX. The "Digital Signal Processing" course from Georgia Tech on edX is a good starting point.</p>
+                            </li>
+                            <li>
+                                <h4>Phonetics</h4>
+                                <p>Look for linguistics courses from universities on platforms like edX and Coursera to understand the fundamentals of human speech.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -566,13 +1242,30 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Time-Series Analyst. You'll be a company-wide expert, responsible for the forecasting strategy and mentoring a team of analysts.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python/R</h4>
+                                <p>Refer to resources for "Data Scientist" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Time-series libraries (Prophet, Statsmodels)</h4>
+                                <p>Look for official documentation and tutorials from these libraries. Many data science courses also have modules on time-series analysis.</p>
+                            </li>
+                            <li>
+                                <h4>Feature engineering & forecasting models</h4>
+                                <p>Refer to resources for "Data Scientist" in this category for courses on feature engineering and general machine learning models.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
 
         <div class="job-category">
-            <h2>4. <span class="color-dot yellow"></span>Data, Infrastructure & Ops for AI</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot yellow"></span>Data, Infrastructure & Ops for AI</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Platform Engineer / Systems Engineer</h3>
                     <div class="job-info">
@@ -588,6 +1281,33 @@
                         <p>Become an AI Platform Engineer. You'll design and build the internal platforms that enable data scientists to train and deploy models efficiently.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to Director of AI Infrastructure. You'll be responsible for the company's entire AI platform, leading a team and setting the long-term technology strategy.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Kubernetes & Docker</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.edx.org/course/introduction-to-kubernetes" target="_blank">Introduction to Kubernetes</a> (edX)</li>
+                                    <li><a href="https://www.coursera.org/courses?query=docker" target="_blank">Docker courses</a> (Coursera)</li>
+                                    <li><a href="https://www.docker.com/get-started" target="_blank">Docker Getting Started Guide</a> (Docker.com)</li>
+                                    <li><a href="https://www.freecodecamp.org/news/the-docker-handbook/" target="_blank">The Docker Handbook</a> (freeCodeCamp)</li>
+                                    <li><a href="https://kubernetes.io/docs/tutorials/" target="_blank">Kubernetes Official Tutorials</a> (Kubernetes.io)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Cloud services</h4>
+                                <p>Look for official documentation and tutorials from AWS, Azure, and Google Cloud. They all offer extensive free learning resources.</p>
+                            </li>
+                            <li>
+                                <h4>System architecture & Linux</h4>
+                                <p>Look for tutorials on system design for engineers and Linux command-line basics on platforms like freeCodeCamp and GeeksforGeeks.</p>
+                            </li>
+                            <li>
+                                <h4>Automation scripting</h4>
+                                <p>Learn Python and Shell scripting. Refer to Python resources in other categories, and look for "Linux Shell Scripting" tutorials on freeCodeCamp.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -606,6 +1326,29 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal Data Engineer. You'll be a top-level expert, responsible for the company's entire data architecture and mentoring other data engineers.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Apache Spark & Hadoop</h4>
+                                <ul class="resource-list">
+                                    <li><a href="https://www.coursera.org/specializations/big-data" target="_blank">Big Data Specialization</a> (Coursera)</li>
+                                    <li><a href="https://www.udemy.com/topic/hadoop/" target="_blank">Hadoop Courses</a> (Udemy)</li>
+                                    <li><a href="https://www.edx.org/course/big-data-analytics" target="_blank">Big Data Analytics</a> (edX)</li>
+                                    <li><a href="https://spark.apache.org/docs/latest/index.html" target="_blank">Apache Spark Official Documentation</a> (Apache.org)</li>
+                                    <li><a href="https://www.youtube.com/watch?v=F_f-eS1I0-Y" target="_blank">Big Data Tutorials</a> (freeCodeCamp, YouTube)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Distributed systems</h4>
+                                <p>Look for courses on distributed computing and system design. The "Distributed Systems" course from the University of Illinois on Coursera is a good start.</p>
+                            </li>
+                            <li>
+                                <h4>SQL & ETL</h4>
+                                <p>Refer to resources for "AI Business Analyst" and "Data Engineer" in the AI Product & Business category and this category, respectively.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Cloud AI Engineer (AWS, Azure, GCP)</h3>
@@ -622,6 +1365,27 @@
                         <p>Become a Cloud AI Engineer. You'll specialize in deploying and managing AI workloads on the cloud, leveraging platform-specific services to build scalable solutions.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Cloud AI Architect. You'll design cloud-based AI solutions for large-scale enterprise clients, ensuring performance, security, and cost-effectiveness.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Cloud provider certification</h4>
+                                <p>Look for free courses from AWS (AWS Skill Builder), Azure (Microsoft Learn), and Google Cloud (Google Cloud Skills Boost) on their official websites.</p>
+                            </li>
+                            <li>
+                                <h4>Python & API integration</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Cloud-native services</h4>
+                                <p>The official documentation for AWS SageMaker, Azure Machine Learning, and Google Cloud AI Platform provides extensive tutorials and guides.</p>
+                            </li>
+                            <li>
+                                <h4>Security</h4>
+                                <p>Look for cybersecurity courses and cloud security tutorials on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -640,6 +1404,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Data Engineer. You'll oversee the data engineering team and be responsible for the company's entire data infrastructure and quality.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>SQL & Python</h4>
+                                <p>Refer to resources for "AI Business Analyst" and "AI Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>ETL/ELT & data modeling</h4>
+                                <p>Look for tutorials on data warehousing and data modeling on platforms like Coursera and edX. The official documentation for tools like Apache Airflow is also a great resource.</p>
+                            </li>
+                            <li>
+                                <h4>Cloud platforms & data governance</h4>
+                                <p>Refer to resources for "Cloud AI Engineer" in this category. For data governance, look for courses on "data privacy" and "data ethics."</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">DataOps Engineer for ML</h3>
@@ -656,6 +1437,23 @@
                         <p>Become a DataOps Engineer. You'll apply DevOps principles to the data lifecycle, automating data delivery and quality checks to streamline ML development.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal DataOps Engineer. You'll lead the DataOps strategy for the organization and ensure data pipelines are reliable and scalable at an enterprise level.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>DevOps tools & CI/CD</h4>
+                                <p>Look for tutorials on tools like Jenkins, GitLab CI, and GitHub Actions. The official documentation for these tools is often the best place to start.</p>
+                            </li>
+                            <li>
+                                <h4>Data validation & pipeline automation</h4>
+                                <p>Look for resources on data quality management and pipeline automation using tools like Apache Airflow and Dagster.</p>
+                            </li>
+                            <li>
+                                <h4>Data observability</h4>
+                                <p>This is a newer field. Look for blog posts and tutorials from companies specializing in data observability, such as Monte Carlo and Datafold.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -674,6 +1472,27 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to an MLOps Architect. You'll design and build the company's MLOps platform, choosing the right tools and technologies to support a large number of ML models.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>DevOps, Docker & Kubernetes</h4>
+                                <p>Refer to resources for "AI Platform Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>CI/CD</h4>
+                                <p>Refer to resources for "DataOps Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Model monitoring</h4>
+                                <p>Look for tutorials on tools like MLflow and Kubeflow, which are used for tracking and monitoring ML models in production.</p>
+                            </li>
+                            <li>
+                                <h4>Cloud infrastructure & Python</h4>
+                                <p>Refer to resources for "Cloud AI Engineer" and "AI Engineer" in other categories.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Model Deployment / Serving Engineer</h3>
@@ -691,13 +1510,34 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Model Serving Engineer. You'll lead the team responsible for deploying and managing all production models and optimizing their performance at scale.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>REST APIs</h4>
+                                <p>Look for tutorials on building and consuming REST APIs using frameworks like Flask or FastAPI in Python.</p>
+                            </li>
+                            <li>
+                                <h4>Containerization & cloud deployment</h4>
+                                <p>Refer to resources for "MLOps Engineer" and "Cloud AI Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Scaling strategies</h4>
+                                <p>Look for courses on microservices architecture and scalability on platforms like Coursera and edX. The "Cloud Computing" specialization from the University of Illinois is a great start.</p>
+                            </li>
+                            <li>
+                                <h4>Performance optimization</h4>
+                                <p>Look for courses on performance tuning for web services and cloud applications. The official documentation for cloud providers is also a great resource.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
 
         <div class="job-category">
-            <h2>5. <span class="color-dot green"></span>Entry / Early-Career Roles</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot green"></span>Entry / Early-Career Roles</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Intern – Research Intern</h3>
                     <div class="job-info">
@@ -713,6 +1553,23 @@
                         <p>An intern's career path is a direct transition into a full-time role, such as a Junior Data Scientist or AI Engineer, by demonstrating strong project work and a willingness to learn.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Success at the intern level is measured by securing a full-time offer, not by moving into a senior role directly. Seniority is achieved after years of experience as a full-time employee.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python & basic ML concepts</h4>
+                                <p>Refer to resources for "AI Engineer" and "Data Scientist" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Data handling</h4>
+                                <p>Look for courses on data manipulation using libraries like Pandas and NumPy on platforms like Coursera and DataCamp.</p>
+                            </li>
+                            <li>
+                                <h4>Academic research skills</h4>
+                                <p>Look for courses on research methodology, scientific writing, and data analysis on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -731,6 +1588,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Manager of Technical Support. You'll lead a team of support engineers and set the strategy for providing excellent customer support for AI products.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Problem-solving & communication</h4>
+                                <p>Look for soft skills courses on platforms like Coursera and edX. Many of these courses are available to audit for free.</p>
+                            </li>
+                            <li>
+                                <h4>Basic AI knowledge & technical troubleshooting</h4>
+                                <p>Refer to resources for "AI Engineer" and "Data Scientist" in other categories for a foundational understanding of AI/ML concepts.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Teaching Assistant – Lab Assistant</h3>
@@ -747,6 +1617,19 @@
                         <p>You can transition into an applied research role or a junior position in a specialized AI field after demonstrating expertise and project work.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Seniority is not typical for this role. It is a transitional role that prepares you for more senior positions in either academia (e.g., as a researcher) or industry.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Strong foundational knowledge of AI/ML</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" and "Deep Learning Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Communication & mentorship</h4>
+                                <p>Look for courses on leadership, teaching, and communication on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -765,6 +1648,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Engineer. You'll lead a team of junior engineers and design the technical architecture for major projects.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python</h4>
+                                <p>Refer to resources for "AI Engineer" in the AI for Domain Applications category.</p>
+                            </li>
+                            <li>
+                                <h4>Basic CV/NLP libraries</h4>
+                                <p>Refer to resources for "Computer Vision Engineer" and "NLP Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Data preprocessing</h4>
+                                <p>Look for courses on data science and machine learning. The "Data Science" specialization on Coursera is a great start.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Junior Data Scientist (AI focus)</h3>
@@ -781,6 +1681,23 @@
                         <p>Become a Data Scientist. You'll take on more complex modeling challenges, from model building to deployment, and will be expected to present your findings to business stakeholders.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Senior Data Scientist. You'll mentor junior team members, lead projects, and influence the company's data strategy.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python/R & SQL</h4>
+                                <p>Refer to resources for "Data Scientist" and "AI Business Analyst" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Data cleaning & basic statistical analysis</h4>
+                                <p>Look for courses on data analysis and statistics on platforms like Coursera and edX. The "Statistics with Python" course from the University of Michigan on Coursera is a great start.</p>
+                            </li>
+                            <li>
+                                <h4>Model training</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" in the Core AI & ML category.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -799,13 +1716,26 @@
                         <h3>Senior/Leadership</h3>
                         <p>Seniority is achieved after demonstrating expertise as a full-time ML engineer, not typically from this associate-level role.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python, ML libraries & data analysis</h4>
+                                <p>Refer to resources for "Data Scientist" and "AI Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Feature engineering & model evaluation</h4>
+                                <p>Look for courses on machine learning. The "Machine Learning Specialization" on Coursera by Andrew Ng is a great start.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
 
         <div class="job-category">
-            <h2>6. <span class="color-dot orange"></span>Generative AI & Large Language Models</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot orange"></span>Generative AI & Large Language Models</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Content Engineer (text-to-image/video)</h3>
                     <div class="job-info">
@@ -821,6 +1751,23 @@
                         <p>Become a Generative AI Engineer. You'll build custom models and pipelines for specific creative tasks, from concept to production.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Generative AI Artist or Engineer. You'll lead a team in creating new generative capabilities and pushing the boundaries of what is possible with AI-driven content creation.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Deep learning, generative models & PyTorch</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Computer vision</h4>
+                                <p>Refer to resources for "Computer Vision Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Creativity</h4>
+                                <p>This is a soft skill that is developed through practice and experience. Look for tutorials on art, design, and creative writing to complement your technical skills.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -839,6 +1786,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Conversational AI Architect. You'll oversee the design of a company's entire conversational AI platform and mentor a team of developers.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Python & NLP</h4>
+                                <p>Refer to resources for "AI Engineer" and "NLP Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Chatbot frameworks (Rasa, Dialogflow)</h4>
+                                <p>Look for official documentation and tutorials from these platforms. Many also offer free courses and certification paths.</p>
+                            </li>
+                            <li>
+                                <h4>Speech recognition (ASR) & intent recognition</h4>
+                                <p>Look for courses on speech processing and natural language understanding on platforms like Coursera and edX. The "Speech Recognition" course from Coursera is a great start.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Generative AI Engineer (text, image, audio, video)</h3>
@@ -855,6 +1819,23 @@
                         <p>Become a Generative AI Engineer. You'll work on building and optimizing custom generative models for various modalities and deploying them to production.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Principal Generative AI Engineer. You'll lead the technical direction for a company's generative AI products and mentor a team of engineers.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Deep learning, transformer models & PyTorch/TensorFlow</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" and "NLP Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Model training/fine-tuning</h4>
+                                <p>Look for advanced courses on deep learning and NLP. The official documentation for Hugging Face is a great resource for learning fine-tuning.</p>
+                            </li>
+                            <li>
+                                <h4>Creativity</h4>
+                                <p>This is a soft skill that is developed through practice and experience. Look for tutorials on art, design, and creative writing to complement your technical skills.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -873,6 +1854,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead LLM Architect. You'll be responsible for the company's entire LLM strategy, from model selection to fine-tuning and deployment pipelines.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Deep learning & LLMs</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" and "NLP Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Fine-tuning techniques & PyTorch/Hugging Face</h4>
+                                <p>The official documentation for Hugging Face is the best place to start. Look for tutorials and courses on platforms like Coursera and edX that cover LLM fine-tuning.</p>
+                            </li>
+                            <li>
+                                <h4>Data curation</h4>
+                                <p>Look for courses on data science and data engineering. The "Data Curation" course from the University of Illinois on Coursera is a great start.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Prompt Engineer</h3>
@@ -889,6 +1887,23 @@
                         <p>Become a Prompt Engineer. You'll work with product teams to design and test prompt templates that power customer-facing applications and internal tools.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Prompt Engineer. You'll be a recognized expert, responsible for developing and documenting a company’s prompt engineering best practices.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Creative writing & prompt design patterns</h4>
+                                <p>Look for tutorials and blog posts on platforms like Medium and Substack. The prompt engineering guide from OpenAI is a great starting point.</p>
+                            </li>
+                            <li>
+                                <h4>Deep understanding of LLM capabilities</h4>
+                                <p>Refer to resources for "NLP Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Rapid iteration</h4>
+                                <p>This is a soft skill that is developed through practice. Look for tutorials on Agile and Scrum methodologies to learn how to work in an iterative environment.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -907,6 +1922,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead RAG Architect. You'll be responsible for designing the company’s entire RAG infrastructure, ensuring scalability, accuracy, and reliability.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>NLP & Python</h4>
+                                <p>Refer to resources for "NLP Engineer" in the Core AI & ML category.</p>
+                            </li>
+                            <li>
+                                <h4>Vector databases & search algorithms</h4>
+                                <p>Look for tutorials on platforms like Pinecone and Weaviate. The official documentation for these vector databases is the best place to start.</p>
+                            </li>
+                            <li>
+                                <h4>LLMs & information retrieval systems</h4>
+                                <p>Refer to resources for "NLP Engineer" in the Core AI & ML category. For information retrieval, look for courses on data retrieval and search engine optimization.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Synthetic Data Engineer (creating datasets for LLMs)</h3>
@@ -924,13 +1956,30 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Data Strategy. You'll be responsible for the company’s overall data acquisition and curation strategy, including the use of synthetic data generation at a massive scale.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Generative models & Python</h4>
+                                <p>Refer to resources for "Generative AI Engineer" in this category.</p>
+                            </li>
+                            <li>
+                                <h4>Data augmentation & data labeling</h4>
+                                <p>Look for courses on data science and machine learning. Kaggle has a great section on data augmentation and data labeling.</p>
+                            </li>
+                            <li>
+                                <h4>Dataset quality assurance</h4>
+                                <p>Look for courses on data quality management and data governance on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
 
         <div class="job-category">
-            <h2>7. <span class="color-dot dark-green"></span>Leadership & Senior Specialist Roles</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot dark-green"></span>Leadership & Senior Specialist Roles</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Research Lead – Principal Scientist</h3>
                     <div class="job-info">
@@ -944,6 +1993,23 @@
                         <p>This is not an entry-level role. It is a progression from a Senior Research Scientist after years of published work and demonstrated expertise in a specific field of AI.</p>
                         <h3>Senior/Leadership</h3>
                         <p>As a Principal Scientist, you'll lead a team of researchers, set the research agenda for the lab, and guide the direction of the company’s most innovative projects.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>PhD in AI/ML & publications</h4>
+                                <p>These are academic qualifications. The best way to achieve them is through a doctoral program at a university.</p>
+                            </li>
+                            <li>
+                                <h4>Research team leadership & strategic planning</h4>
+                                <p>Look for courses on leadership, management, and business strategy from top business schools on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Deep technical expertise</h4>
+                                <p>This is a combination of many skills. Refer to resources for "AI Research Scientist" and "Deep Learning Engineer" in other categories.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -960,11 +2026,28 @@
                         <h3>Senior/Leadership</h3>
                         <p>As a Practice Head, you'll be a key leader in the organization, driving business growth, building client relationships, and shaping the firm's strategic direction.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Business development & client management</h4>
+                                <p>Look for courses on sales, negotiation, and client relationship management from top business schools on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Project delivery & team leadership</h4>
+                                <p>Refer to resources for "AI Program Manager" and "Lead Machine Learning Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Consulting</h4>
+                                <p>Look for courses on consulting and business strategy from top business schools on platforms like Coursera and edX. Case studies from top consulting firms are also a great resource.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Chief AI Officer – Head of AI</h3>
                     <div class="job-info">
-                        <h4>Remuneration (India)</h3>
+                        <h4>Remuneration (India)</h4>
                         <p>₹50-150+ Lakhs per annum</p>
                         <h4>Skills</h4>
                         <p>Corporate strategy, executive leadership, P&L management, long-term AI vision, C-suite communication.</p>
@@ -972,6 +2055,19 @@
                     <div class="roadmap">
                         <h3>Senior/Leadership</h3>
                         <p>This is a C-suite executive role. The path to this position typically involves decades of experience, starting as a senior leader in engineering, product, or research, and culminating in a role that drives the company’s entire AI vision.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Corporate strategy, executive leadership & P&L management</h4>
+                                <p>Look for executive education courses and MBA programs from top business schools. Many of these programs offer free preview modules on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Long-term AI vision & C-suite communication</h4>
+                                <p>These are high-level soft skills that are developed through experience. Look for courses on strategic thinking, leadership, and public speaking.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -988,6 +2084,23 @@
                         <h3>Senior/Leadership</h3>
                         <p>As a Director, you are a senior leader. Your focus is on strategic planning, resource allocation, and mentorship. You will be a key decision-maker in the organization.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Team leadership & project portfolio management</h4>
+                                <p>Refer to resources for "AI Program Manager" and "Lead Machine Learning Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Budget management & strategic planning</h4>
+                                <p>Look for courses on financial management and business strategy from top business schools on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Technical oversight</h4>
+                                <p>This is a skill that is developed through years of experience. Look for courses on system architecture and software engineering best practices to complement your knowledge.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Lead Machine Learning Engineer</h3>
@@ -1002,6 +2115,23 @@
                         <p>This is a progression from a Senior ML Engineer. You'll take on a leadership role, guiding a team of engineers, reviewing code, and ensuring the technical quality of all projects.</p>
                         <h3>Senior/Leadership</h3>
                         <p>As a Lead Engineer, you are a technical leader. You'll be a key influencer in the engineering organization and may progress to a Director of Engineering or a Principal Engineer role.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Technical leadership & mentorship</h4>
+                                <p>Look for courses on leadership and management from top business schools on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>System design & architecture</h4>
+                                <p>Look for tutorials on system design for engineers and software architecture patterns on platforms like freeCodeCamp and GeeksforGeeks.</p>
+                            </li>
+                            <li>
+                                <h4>Deep expertise in ML</h4>
+                                <p>This is a combination of many skills. Refer to resources for "Machine Learning Engineer" and "Deep Learning Engineer" in other categories.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1018,13 +2148,30 @@
                         <h3>Senior/Leadership</h3>
                         <p>As a Senior Architect, you'll be a top-level expert in the field. You may progress to a Director of AI Infrastructure or a Principal Architect role, setting the technical strategy for the entire company.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Cloud architecture & DevOps</h4>
+                                <p>Refer to resources for "Cloud AI Engineer" and "MLOps Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Automation, CI/CD & infrastructure-as-code</h4>
+                                <p>Look for tutorials on tools like Terraform and Ansible. The official documentation for these tools is a great resource.</p>
+                            </li>
+                            <li>
+                                <h4>Scalability</h4>
+                                <p>Look for courses on distributed systems and cloud architecture on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
 
         <div class="job-category">
-            <h2>8. <span class="color-dot purple"></span>Research, Academia & Innovation</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot purple"></span>Research, Academia & Innovation</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">Academic Faculty in AI – Machine Learning</h3>
                     <div class="job-info">
@@ -1041,11 +2188,24 @@
                         <h3>Senior/Leadership</h3>
                         <p>You'll advance to a Full Professor. You'll be a recognized leader in your field, mentoring the next generation of researchers, and shaping the academic discourse on AI.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>PhD in AI/ML, publications & research portfolio</h4>
+                                <p>These are academic qualifications. The best way to achieve them is through a doctoral program at a university.</p>
+                            </li>
+                            <li>
+                                <h4>Teaching experience & student mentorship</h4>
+                                <p>Look for courses on teaching and mentorship on platforms like Coursera and edX. The "Online Teaching" course from the University of New South Wales on Coursera is a good start.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Lab Scientist – Engineer</h3>
                     <div class="job-info">
-                        <h4>Remuneration (India)</h3>
+                        <h4>Remuneration (India)</h4>
                         <p>₹12-30 Lakhs per annum</p>
                         <h4>Skills</h4>
                         <p>Strong research background, prototyping, algorithm development, experimentation.</p>
@@ -1057,6 +2217,19 @@
                         <p>You'll become a Senior Lab Scientist. You'll lead specific research projects and transition your research into real-world applications within a corporate or academic lab setting.</p>
                         <h3>Senior/Leadership</h3>
                         <p>You'll advance to a Lab Director or Research Lead. You'll be responsible for the overall research agenda of the lab, managing a team, and securing funding.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Strong research background, prototyping & algorithm development</h4>
+                                <p>Refer to resources for "AI Research Scientist" and "AI Algorithm Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Experimentation</h4>
+                                <p>Look for courses on scientific methods and experimental design on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1075,6 +2248,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>You'll advance to a Principal Scientist. You'll be a leading figure in the field, guiding a team of researchers, and setting the direction for the company’s most important research initiatives.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>PhD/Masters, strong mathematics & publications</h4>
+                                <p>These are academic qualifications. The best way to achieve them is through a university program.</p>
+                            </li>
+                            <li>
+                                <h4>Programming & deep learning research</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" in other categories.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Applied Scientist – AI/ML</h3>
@@ -1091,6 +2277,19 @@
                         <p>You'll become a Senior Applied Scientist. You'll be responsible for taking cutting-edge research and applying it to build innovative products and features.</p>
                         <h3>Senior/Leadership</h3>
                         <p>You'll advance to a Principal Applied Scientist. You'll be a top-level expert, guiding a team of scientists and engineers to apply research breakthroughs at scale.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Research application & prototyping</h4>
+                                <p>Look for courses on rapid prototyping and product development on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Deep technical skills & strong programming</h4>
+                                <p>Refer to resources for "AI Research Scientist" and "Machine Learning Engineer" in other categories.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1109,6 +2308,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>Seniority is not typical for this role. It is a transitional role that prepares you for more senior positions after completing your postdoctoral research.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>PhD in AI/ML, specialized research & publications</h4>
+                                <p>These are academic qualifications. The best way to achieve them is through a university program.</p>
+                            </li>
+                            <li>
+                                <h4>Grant writing</h4>
+                                <p>Look for courses on grant writing and scientific communication on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Research Engineer – Foundation Models</h3>
@@ -1126,13 +2338,26 @@
                         <h3>Senior/Leadership</h3>
                         <p>You'll advance to a Principal Engineer. You'll be a top-level expert in large-scale model training and be responsible for the entire infrastructure and engineering strategy for foundation models.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Deep learning, transformer models & infrastructure knowledge</h4>
+                                <p>Refer to resources for "Deep Learning Engineer" and "MLOps Engineer" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Large-scale training & distributed systems</h4>
+                                <p>Look for courses on distributed computing and parallel processing on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
         
         <div class="job-category">
-            <h2>9. <span class="color-dot brown"></span>Responsible & Ethical AI</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot brown"></span>Responsible & Ethical AI</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Compliance Officer (GDPR, HIPAA, etc.)</h3>
                     <div class="job-info">
@@ -1148,6 +2373,19 @@
                         <p>Become an AI Compliance Officer. You'll be responsible for auditing and ensuring that all AI projects within the organization adhere to a complex set of legal and ethical standards.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Governance. You'll manage the entire compliance and governance program for the organization, working directly with C-suite executives.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Legal/regulatory knowledge & data governance</h4>
+                                <p>Look for courses on data privacy and compliance on platforms like Coursera and edX. The official websites for GDPR and HIPAA also have extensive documentation.</p>
+                            </li>
+                            <li>
+                                <h4>Privacy principles & audit and risk assessment</h4>
+                                <p>Look for courses on risk management and information security on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1166,6 +2404,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Senior AI Ethicist. You'll be a recognized expert, responsible for guiding a company's ethical principles and leading discussions on the future of AI ethics.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Philosophy/sociology background, ethical frameworks & policy analysis</h4>
+                                <p>Look for courses on philosophy, ethics, and public policy on platforms like Coursera and edX. The "Ethics, Technology, and Engineering" course from TU Delft is a good start.</p>
+                            </li>
+                            <li>
+                                <h4>Technical understanding of AI systems</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" and "Deep Learning Engineer" in other categories.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Fairness – Bias Auditor</h3>
@@ -1182,6 +2433,19 @@
                         <p>Become a Bias Auditor. You'll use specialized tools and statistical methods to audit AI models for fairness, working to mitigate bias and ensure equitable outcomes.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Fairness & Transparency. You'll lead the company's entire bias auditing program, set standards for fairness, and report directly to leadership on the ethical performance of AI systems.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Bias detection, fairness metrics & data analysis</h4>
+                                <p>Look for courses on data science and machine learning. The "Data Science" specialization on Coursera is a great start.</p>
+                            </li>
+                            <li>
+                                <h4>Python, statistical methods & explainable AI (XAI)</h4>
+                                <p>Refer to resources for "Data Scientist" and "Machine Learning Engineer" in other categories. Look for tutorials on tools like SHAP and LIME for explainable AI.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1200,6 +2464,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Public Policy. You'll be responsible for the company's government relations and public policy strategy, representing the company in discussions with lawmakers.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Public policy, legal knowledge & AI regulation</h4>
+                                <p>Look for courses on public policy and law on platforms like Coursera and edX. The "AI and Law" course from the University of Helsinki is a good start.</p>
+                            </li>
+                            <li>
+                                <h4>Government relations & policy writing</h4>
+                                <p>Look for courses on public relations and technical writing on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Responsible AI Specialist</h3>
@@ -1217,13 +2494,26 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Lead Ethicist or Director of Responsible AI. You'll define the company's ethical principles and build the team responsible for ensuring all AI projects are developed with accountability and fairness in mind.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Interdisciplinary knowledge & risk management</h4>
+                                <p>Look for courses on ethics, law, and technology. The "AI Ethics" course from the University of Helsinki is a great start. For risk management, look for courses on project management and information security.</p>
+                            </li>
+                            <li>
+                                <h4>Technical background & stakeholder management</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" and "AI Business Analyst" in other categories.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
 
         <div class="job-category">
-            <h2>10. <span class="color-dot gear"></span>Supporting & Cross-Functional Roles</h2>
-            <ul style="counter-reset: item;">
+            <h2><span class="color-dot gear"></span>Supporting & Cross-Functional Roles</h2>
+            <ol>
                 <li>
                     <h3 class="job-title">AI Customer Success – Implementation Specialist</h3>
                     <div class="job-info">
@@ -1239,6 +2529,23 @@
                         <p>Become a Customer Success Manager. You'll be responsible for managing a portfolio of key client accounts, ensuring they are getting value from the product and identifying new opportunities.</p>
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Customer Success. You'll manage the entire customer success organization and set the strategy for client retention and growth.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Client communication & project management</h4>
+                                <p>Refer to resources for "AI Business Analyst" and "AI Program Manager" in other categories.</p>
+                            </li>
+                            <li>
+                                <h4>Product knowledge & technical troubleshooting</h4>
+                                <p>This is best learned on the job. However, you can look for courses on a company's specific AI products or general technical support on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Training</h4>
+                                <p>Look for courses on teaching, public speaking, and curriculum design on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1257,6 +2564,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a QA Lead. You'll lead the QA team, define the testing strategy for AI products, and ensure all systems meet high standards of quality.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>QA methodologies & Python</h4>
+                                <p>Refer to resources for "AI Engineer" in other categories. Look for courses on QA and software testing on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Test automation, data validation & model performance metrics</h4>
+                                <p>Look for tutorials on tools like Selenium and Cypress for test automation. For data validation and model performance, look for courses on data science and machine learning.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">AI Training Data Curator – Annotator</h3>
@@ -1273,6 +2593,19 @@
                         <p>You can transition into a Data Curator or a Data Analyst role. You'll focus on ensuring data quality, creating data pipelines, and analyzing data to support model training.</p>
                         <h3>Senior/Leadership</h3>
                         <p>You can advance to a Manager of Data Operations. You'll manage a team of data annotators and curators and be responsible for the company’s entire data labeling pipeline.</p>
+                    </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Attention to detail, data labeling tools & data quality control</h4>
+                                <p>This is best learned on the job. However, you can look for tutorials on data quality management and data annotation tools on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Domain-specific knowledge</h4>
+                                <p>This is specific to your industry. Look for courses on a company's specific domain to complement your technical skills.</p>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li>
@@ -1291,6 +2624,19 @@
                         <h3>Senior/Leadership</h3>
                         <p>You'll advance to a Director of AI Learning. You'll oversee all AI training and education initiatives, both for employees and external partners.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Strong communication & teaching ability</h4>
+                                <p>Refer to resources for "AI Evangelist" in other categories. Look for courses on teaching and public speaking on platforms like Coursera and edX.</p>
+                            </li>
+                            <li>
+                                <h4>Knowledge of ML models & curriculum design</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" in other categories. For curriculum design, look for courses on instructional design and educational technology on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3 class="job-title">Technical Recruiter – AI & ML talent</h3>
@@ -1308,8 +2654,21 @@
                         <h3>Senior/Leadership</h3>
                         <p>Advance to a Director of Talent Acquisition. You'll manage the entire recruiting function and develop the strategy for hiring the best AI talent for the company.</p>
                     </div>
+                    <div class="skills-list">
+                        <h3>Free Learning Resources</h3>
+                        <ul>
+                            <li>
+                                <h4>Recruiting lifecycle & sourcing strategies</h4>
+                                <p>Look for courses on human resources and recruiting on platforms like Coursera and edX. The "Recruiting" specialization from the University of California on Coursera is a good start.</p>
+                            </li>
+                            <li>
+                                <h4>Technical knowledge of AI roles & negotiation</h4>
+                                <p>Refer to resources for "Machine Learning Engineer" and "Deep Learning Engineer" in other categories to gain a technical understanding. For negotiation, look for soft skills courses on platforms like Coursera and edX.</p>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-            </ul>
+            </ol>
         </div>
     </main>
 
